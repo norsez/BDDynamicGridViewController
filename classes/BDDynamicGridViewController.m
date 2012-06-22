@@ -97,11 +97,11 @@
         cell.contentView.clipsToBounds = YES;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didTapView:)];
+        UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPress:)];
         longPress.numberOfTouchesRequired = 1;
         [cell.contentView addGestureRecognizer:longPress];
         
-        UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didTapView:)];
+        UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTap:)];
         doubleTap.numberOfTapsRequired = 2;
         [cell.contentView addGestureRecognizer:doubleTap];
     }
@@ -154,26 +154,25 @@
 
 #pragma mark - events
 
-- (void)didTapView:(UITapGestureRecognizer*)tap
+
+
+
+- (void)gesture:(UIGestureRecognizer*)gesture view:(UIView**)view viewIndex:(NSInteger*)viewIndex
 {
-    if (tap.state == UIGestureRecognizerStateEnded) {
+    if (gesture.state == UIGestureRecognizerStateEnded) {
         
-        NSUInteger row = tap.view.tag;
+        NSUInteger row = gesture.view.tag;
         
-        CGPoint tapPoint = [tap locationInView:tap.view];
-        NSArray *viewsSortedByXDesc = [tap.view.subviews sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
+        CGPoint tapPoint = [gesture locationInView:gesture.view];
+        NSArray *viewsSortedByXDesc = [gesture.view.subviews sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
             UIView * v1 = obj1;
             UIView * v2 = obj2;
             return v1.frame.origin.x - v2.frame.origin.x;
         }];
         
         if (viewsSortedByXDesc.count == 1) {   
-            if ([tap isKindOfClass:[UILongPressGestureRecognizer class]]) {
-                self.onLongPress([viewsSortedByXDesc objectAtIndex:0], (row * self.delegate.numberOfColumns)); 
-            }else {
-                self.onDoubleTap([viewsSortedByXDesc objectAtIndex:0], (row * self.delegate.numberOfColumns)); 
-            }
-            
+            *view = [viewsSortedByXDesc objectAtIndex:0];
+            *viewIndex = (row * self.delegate.numberOfColumns);
             return;
         }
         
@@ -195,13 +194,37 @@
         
         index = index - 1;
         
-        if ([tap isKindOfClass:[UILongPressGestureRecognizer class]]) {
-            self.onLongPress(tappedView, ((row * self.delegate.numberOfColumns) + index)); 
-        }else {
-            self.onDoubleTap(tappedView, ((row * self.delegate.numberOfColumns) + index)); 
-        }
+        *view = tappedView;
+        *viewIndex = ((row * self.delegate.numberOfColumns) + index);
     }
 }
+
+- (void)didLongPress:(UILongPressGestureRecognizer*)longPress
+{
+    if (longPress.state == UIGestureRecognizerStateRecognized) {
+        UIView *view = nil;
+        NSInteger viewIndex = -1;
+        [self gesture:longPress view:&view viewIndex:&viewIndex];
+        if (self.onLongPress) {
+            self.onLongPress(view, viewIndex);
+        }
+    }
+
+}
+
+- (void)didDoubleTap:(UITapGestureRecognizer*)doubleTap
+{
+    if (doubleTap.state == UIGestureRecognizerStateRecognized) {
+        UIView *view = nil;
+        NSInteger viewIndex = -1;
+        [self gesture:doubleTap view:&view viewIndex:&viewIndex];
+        if (self.onDoubleTap) {
+            self.onDoubleTap(view, viewIndex);
+        }
+    }
+
+}
+
 
 @synthesize borderWidth;
 @synthesize delegate;

@@ -75,7 +75,7 @@
 /**
  @name Method delegator blocks
  */
-@property (nonatomic, copy) void (^onLongPress)(UIView* view, NSUInteger);
-@property (nonatomic, copy) void (^onDoubleTap)(UIView* view, NSUInteger);
+@property (nonatomic, copy) void (^onLongPress)(UIView* view, NSInteger);
+@property (nonatomic, copy) void (^onDoubleTap)(UIView* view, NSInteger);
 
 @end

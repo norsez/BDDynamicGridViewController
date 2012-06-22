@@ -22,7 +22,17 @@
         [self reloadData];
     }];
     self.rowHeight = 100;
-    self.delegate = self; 
+    self.delegate = self;
+    
+    self.onLongPress = ^(UIView* view, NSInteger viewIndex){
+        NSLog(@"Long press on %@, at %d", view, viewIndex);
+    };
+
+    self.onDoubleTap = ^(UIView* view, NSInteger viewIndex){
+        NSLog(@"Double tap on %@, at %d", view, viewIndex);
+    };
+
+    
     [super viewDidLoad];
 }
 
