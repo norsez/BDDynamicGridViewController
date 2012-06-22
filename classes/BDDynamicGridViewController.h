@@ -37,6 +37,22 @@
 #import "BDDynamicGridViewDelegate.h"
 
 
+enum BDDynamicGridLayoutStyle {
+    /**
+     Each UIView keeps their aspect ratio for width and height.
+     */
+    BDDynamicGridLayoutStyleEven = 0,
+    /**
+     Each UIView fills up row height, but width is random.
+     */
+    BDDynamicGridLayoutStyleFill
+    };
+/**
+ Parameter for laying out each UIView.
+ */
+typedef NSUInteger BDDynamicGridLayoutStyle;
+
+
 /**
  This class displays a UIView list in a layout inspired by Flickr's 2012
  Favorite page. (See http://blog.flickr.net/en/2012/03/22/your-favorites-page-now-with-justified-view/)
@@ -82,6 +98,11 @@
  Top, left, right, buttom margin of each UIView in layout.
  */
 @property (nonatomic, assign) CGFloat borderWidth;
+
+/**
+ Grid layout style for each UIView.
+ */
+@property (nonatomic, assign) BDDynamicGridLayoutStyle gridLayoutStyle;
 
 
 /**

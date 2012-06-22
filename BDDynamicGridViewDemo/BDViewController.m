@@ -17,10 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self _loadSampleDataWithCompletion:^(NSArray *images) {
-        _items = images; 
-        [self reloadData];
-    }];
+   
     self.rowHeight = 100;
     self.delegate = self;
     
@@ -32,8 +29,14 @@
         NSLog(@"Double tap on %@, at %d", view, viewIndex);
     };
 
+    self.gridLayoutStyle = BDDynamicGridLayoutStyleFill;
     
     [super viewDidLoad];
+    
+    [self _loadSampleDataWithCompletion:^(NSArray *images) {
+        _items = images; 
+        [self reloadData];
+    }];
 }
 
 
@@ -47,23 +50,13 @@
     return 4;
 }
 
-- (CGRect) rectForImage:(UIImage*)image
-{
-    if (image.size.width > image.size.height) {
-        return CGRectMake(0, 0, self.rowHeight * 3.0 / 2.0, self.rowHeight);
-    }else {
-        return CGRectMake(0, 0, self.rowHeight * 2.0 / 3.0, self.rowHeight);
-    }
-}
 
 - (UIView *)viewAtIndex:(NSUInteger)index
 {
     UIImage * img = [_items objectAtIndex:index];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectZero];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
     imageView.image = img;
     imageView.clipsToBounds = YES;
-    imageView.contentMode = UIViewContentModeScaleAspectFill;
-    imageView.frame = [self rectForImage:img];
     return imageView;
 }
 

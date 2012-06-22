@@ -95,6 +95,24 @@
     return total;
 }
 
+
+
+- (CGRect) rectForView:(UIView*)view
+{
+    if (self.gridLayoutStyle == BDDynamicGridLayoutStyleFill) {
+        if (view.frame.size.width > view.frame.size.height) {
+            return CGRectMake(0, 0, self.rowHeight * 3.0 / 2.0, self.rowHeight);
+        }else {
+            return CGRectMake(0, 0, self.rowHeight * 2.0 / 3.0, self.rowHeight);
+        }
+    }else if (self.gridLayoutStyle == BDDynamicGridLayoutStyleEven){
+        return CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
+    }
+    return CGRectZero;
+}
+
+
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
@@ -102,7 +120,7 @@
     
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.contentView.autoresizingMask = 0;
+        cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         cell.contentView.clipsToBounds = YES;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -125,21 +143,27 @@
 
     for(int i = start; i < end; i++){
         UIView *viewToAdd = [self.delegate viewAtIndex:i];
+        viewToAdd.frame = [self rectForView:viewToAdd];
         viewToAdd.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        [cell.contentView addSubview:viewToAdd];
-        cell.contentView.tag = indexPath.row;
+        if  (self.gridLayoutStyle == BDDynamicGridLayoutStyleFill){
+            viewToAdd.contentMode = UIViewContentModeScaleAspectFill;
+        }else if(self.gridLayoutStyle == BDDynamicGridLayoutStyleEven){
+            viewToAdd.contentMode = UIViewContentModeScaleAspectFit;
+        }
+
+        [cell.contentView addSubview:viewToAdd];        
+        cell.contentView.tag = indexPath.row;        
     }
     
     return cell;
 }
-
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //layout what's in the cell
     CGFloat aRowHeight = [self tableView:_tableView heightForRowAtIndexPath:indexPath];
     CGFloat totalWidth = 0;
-    for (UIView* subview in cell.contentView.subviews){
+    for (UIView* subview in cell.contentView.subviews){       
         totalWidth = totalWidth + subview.frame.size.width + (self.borderWidth * 2);
     }
     CGFloat widthScaling =  (cell.contentView.frame.size.width/totalWidth);
@@ -164,9 +188,6 @@
 }
 
 #pragma mark - events
-
-
-
 
 - (void)gesture:(UIGestureRecognizer*)gesture view:(UIView**)view viewIndex:(NSInteger*)viewIndex
 {
@@ -242,4 +263,5 @@
 @synthesize rowHeight;
 @synthesize onLongPress;
 @synthesize onDoubleTap;
+@synthesize gridLayoutStyle;
 @end
