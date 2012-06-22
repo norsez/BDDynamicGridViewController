@@ -7,6 +7,34 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3B7DF60159362AC00FF920B /* BDViewController+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B7DF5F159362AC00FF920B /* BDViewController+Private.m */; };
+		F3D84A801593E8B900633ECD /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A671593E8B900633ECD /* 1.jpg */; };
+		F3D84A811593E8B900633ECD /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A681593E8B900633ECD /* 2.jpg */; };
+		F3D84A821593E8B900633ECD /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A691593E8B900633ECD /* 3.jpg */; };
+		F3D84A831593E8B900633ECD /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A6A1593E8B900633ECD /* 4.jpg */; };
+		F3D84A841593E8B900633ECD /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A6B1593E8B900633ECD /* 5.jpg */; };
+		F3D84A851593E8B900633ECD /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A6C1593E8B900633ECD /* 6.jpg */; };
+		F3D84A861593E8B900633ECD /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A6D1593E8B900633ECD /* 7.jpg */; };
+		F3D84A871593E8B900633ECD /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A6E1593E8B900633ECD /* 8.jpg */; };
+		F3D84A881593E8B900633ECD /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A6F1593E8B900633ECD /* 9.jpg */; };
+		F3D84A891593E8B900633ECD /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A701593E8B900633ECD /* 10.jpg */; };
+		F3D84A8A1593E8B900633ECD /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A711593E8B900633ECD /* 11.jpg */; };
+		F3D84A8B1593E8B900633ECD /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A721593E8B900633ECD /* 12.jpg */; };
+		F3D84A8C1593E8B900633ECD /* 13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A731593E8B900633ECD /* 13.jpg */; };
+		F3D84A8D1593E8B900633ECD /* 14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A741593E8B900633ECD /* 14.jpg */; };
+		F3D84A8E1593E8B900633ECD /* 15.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A751593E8B900633ECD /* 15.jpg */; };
+		F3D84A8F1593E8B900633ECD /* 16.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A761593E8B900633ECD /* 16.jpg */; };
+		F3D84A901593E8B900633ECD /* 17.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A771593E8B900633ECD /* 17.jpg */; };
+		F3D84A911593E8B900633ECD /* 18.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A781593E8B900633ECD /* 18.jpg */; };
+		F3D84A921593E8B900633ECD /* 19.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A791593E8B900633ECD /* 19.jpg */; };
+		F3D84A931593E8B900633ECD /* 20.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A7A1593E8B900633ECD /* 20.jpg */; };
+		F3D84A941593E8B900633ECD /* 21.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A7B1593E8B900633ECD /* 21.jpg */; };
+		F3D84A951593E8B900633ECD /* 22.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A7C1593E8B900633ECD /* 22.jpg */; };
+		F3D84A961593E8B900633ECD /* 23.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A7D1593E8B900633ECD /* 23.jpg */; };
+		F3D84A971593E8B900633ECD /* 24.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A7E1593E8B900633ECD /* 24.jpg */; };
+		F3D84A981593E8B900633ECD /* 25.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A7F1593E8B900633ECD /* 25.jpg */; };
+		FF1CCA5115942E7100745F68 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FF1CCA4F15942E7100745F68 /* LICENSE */; };
+		FF1CCA5215942E7100745F68 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FF1CCA5015942E7100745F68 /* README.md */; };
 		FF5D5FE8159310FE00984C2F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5D5FE7159310FE00984C2F /* UIKit.framework */; };
 		FF5D5FEA159310FE00984C2F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5D5FE9159310FE00984C2F /* Foundation.framework */; };
 		FF5D5FEC159310FE00984C2F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5D5FEB159310FE00984C2F /* CoreGraphics.framework */; };
@@ -14,23 +42,54 @@
 		FF5D5FF4159310FE00984C2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5D5FF3159310FE00984C2F /* main.m */; };
 		FF5D5FF8159310FE00984C2F /* BDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5D5FF7159310FE00984C2F /* BDAppDelegate.m */; };
 		FF5D5FFB159310FE00984C2F /* BDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5D5FFA159310FE00984C2F /* BDViewController.m */; };
-		FF5D5FFE159310FE00984C2F /* BDViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FF5D5FFC159310FE00984C2F /* BDViewController.xib */; };
+		FF5D60071593117100984C2F /* BDDynamicGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5D60061593117100984C2F /* BDDynamicGridViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F3B7DF5E159362AC00FF920B /* BDViewController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BDViewController+Private.h"; sourceTree = "<group>"; };
+		F3B7DF5F159362AC00FF920B /* BDViewController+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BDViewController+Private.m"; sourceTree = "<group>"; };
+		F3D84A671593E8B900633ECD /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1.jpg; path = images/1.jpg; sourceTree = "<group>"; };
+		F3D84A681593E8B900633ECD /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 2.jpg; path = images/2.jpg; sourceTree = "<group>"; };
+		F3D84A691593E8B900633ECD /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 3.jpg; path = images/3.jpg; sourceTree = "<group>"; };
+		F3D84A6A1593E8B900633ECD /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 4.jpg; path = images/4.jpg; sourceTree = "<group>"; };
+		F3D84A6B1593E8B900633ECD /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 5.jpg; path = images/5.jpg; sourceTree = "<group>"; };
+		F3D84A6C1593E8B900633ECD /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 6.jpg; path = images/6.jpg; sourceTree = "<group>"; };
+		F3D84A6D1593E8B900633ECD /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 7.jpg; path = images/7.jpg; sourceTree = "<group>"; };
+		F3D84A6E1593E8B900633ECD /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 8.jpg; path = images/8.jpg; sourceTree = "<group>"; };
+		F3D84A6F1593E8B900633ECD /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 9.jpg; path = images/9.jpg; sourceTree = "<group>"; };
+		F3D84A701593E8B900633ECD /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 10.jpg; path = images/10.jpg; sourceTree = "<group>"; };
+		F3D84A711593E8B900633ECD /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 11.jpg; path = images/11.jpg; sourceTree = "<group>"; };
+		F3D84A721593E8B900633ECD /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 12.jpg; path = images/12.jpg; sourceTree = "<group>"; };
+		F3D84A731593E8B900633ECD /* 13.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 13.jpg; path = images/13.jpg; sourceTree = "<group>"; };
+		F3D84A741593E8B900633ECD /* 14.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 14.jpg; path = images/14.jpg; sourceTree = "<group>"; };
+		F3D84A751593E8B900633ECD /* 15.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 15.jpg; path = images/15.jpg; sourceTree = "<group>"; };
+		F3D84A761593E8B900633ECD /* 16.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 16.jpg; path = images/16.jpg; sourceTree = "<group>"; };
+		F3D84A771593E8B900633ECD /* 17.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 17.jpg; path = images/17.jpg; sourceTree = "<group>"; };
+		F3D84A781593E8B900633ECD /* 18.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 18.jpg; path = images/18.jpg; sourceTree = "<group>"; };
+		F3D84A791593E8B900633ECD /* 19.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 19.jpg; path = images/19.jpg; sourceTree = "<group>"; };
+		F3D84A7A1593E8B900633ECD /* 20.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 20.jpg; path = images/20.jpg; sourceTree = "<group>"; };
+		F3D84A7B1593E8B900633ECD /* 21.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 21.jpg; path = images/21.jpg; sourceTree = "<group>"; };
+		F3D84A7C1593E8B900633ECD /* 22.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 22.jpg; path = images/22.jpg; sourceTree = "<group>"; };
+		F3D84A7D1593E8B900633ECD /* 23.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 23.jpg; path = images/23.jpg; sourceTree = "<group>"; };
+		F3D84A7E1593E8B900633ECD /* 24.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 24.jpg; path = images/24.jpg; sourceTree = "<group>"; };
+		F3D84A7F1593E8B900633ECD /* 25.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 25.jpg; path = images/25.jpg; sourceTree = "<group>"; };
+		FF1CCA4F15942E7100745F68 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		FF1CCA5015942E7100745F68 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		FF5D5FE3159310FE00984C2F /* BDDynamicGridViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BDDynamicGridViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF5D5FE7159310FE00984C2F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FF5D5FE9159310FE00984C2F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FF5D5FEB159310FE00984C2F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		FF5D5FEF159310FE00984C2F /* BDDynamicGridViewDemo-Info.plist */ = {isa = PBXFileReference; path = "BDDynamicGridViewDemo-Info.plist"; sourceTree = "<group>"; };
+		FF5D5FEF159310FE00984C2F /* BDDynamicGridViewDemo-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BDDynamicGridViewDemo-Info.plist"; sourceTree = "<group>"; };
 		FF5D5FF1159310FE00984C2F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FF5D5FF3159310FE00984C2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		FF5D5FF5159310FE00984C2F /* BDDynamicGridViewDemo-Prefix.pch */ = {isa = PBXFileReference; path = "BDDynamicGridViewDemo-Prefix.pch"; sourceTree = "<group>"; };
-		FF5D5FF6159310FE00984C2F /* BDAppDelegate.h */ = {isa = PBXFileReference; path = BDAppDelegate.h; sourceTree = "<group>"; };
+		FF5D5FF5159310FE00984C2F /* BDDynamicGridViewDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BDDynamicGridViewDemo-Prefix.pch"; sourceTree = "<group>"; };
+		FF5D5FF6159310FE00984C2F /* BDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDAppDelegate.h; sourceTree = "<group>"; };
 		FF5D5FF7159310FE00984C2F /* BDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDAppDelegate.m; sourceTree = "<group>"; };
-		FF5D5FF9159310FE00984C2F /* BDViewController.h */ = {isa = PBXFileReference; path = BDViewController.h; sourceTree = "<group>"; };
+		FF5D5FF9159310FE00984C2F /* BDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDViewController.h; sourceTree = "<group>"; };
 		FF5D5FFA159310FE00984C2F /* BDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDViewController.m; sourceTree = "<group>"; };
-		FF5D5FFD159310FE00984C2F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/BDViewController.xib; sourceTree = "<group>"; };
+		FF5D60051593117100984C2F /* BDDynamicGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDDynamicGridViewController.h; path = classes/BDDynamicGridViewController.h; sourceTree = "<group>"; };
+		FF5D60061593117100984C2F /* BDDynamicGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BDDynamicGridViewController.m; path = classes/BDDynamicGridViewController.m; sourceTree = "<group>"; };
+		FF5D60081593122200984C2F /* BDDynamicGridViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BDDynamicGridViewDelegate.h; path = classes/BDDynamicGridViewDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,9 +106,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3D84A651593E8AC00633ECD /* images */ = {
+			isa = PBXGroup;
+			children = (
+				F3D84A671593E8B900633ECD /* 1.jpg */,
+				F3D84A681593E8B900633ECD /* 2.jpg */,
+				F3D84A691593E8B900633ECD /* 3.jpg */,
+				F3D84A6A1593E8B900633ECD /* 4.jpg */,
+				F3D84A6B1593E8B900633ECD /* 5.jpg */,
+				F3D84A6C1593E8B900633ECD /* 6.jpg */,
+				F3D84A6D1593E8B900633ECD /* 7.jpg */,
+				F3D84A6E1593E8B900633ECD /* 8.jpg */,
+				F3D84A6F1593E8B900633ECD /* 9.jpg */,
+				F3D84A701593E8B900633ECD /* 10.jpg */,
+				F3D84A711593E8B900633ECD /* 11.jpg */,
+				F3D84A721593E8B900633ECD /* 12.jpg */,
+				F3D84A731593E8B900633ECD /* 13.jpg */,
+				F3D84A741593E8B900633ECD /* 14.jpg */,
+				F3D84A751593E8B900633ECD /* 15.jpg */,
+				F3D84A761593E8B900633ECD /* 16.jpg */,
+				F3D84A771593E8B900633ECD /* 17.jpg */,
+				F3D84A781593E8B900633ECD /* 18.jpg */,
+				F3D84A791593E8B900633ECD /* 19.jpg */,
+				F3D84A7A1593E8B900633ECD /* 20.jpg */,
+				F3D84A7B1593E8B900633ECD /* 21.jpg */,
+				F3D84A7C1593E8B900633ECD /* 22.jpg */,
+				F3D84A7D1593E8B900633ECD /* 23.jpg */,
+				F3D84A7E1593E8B900633ECD /* 24.jpg */,
+				F3D84A7F1593E8B900633ECD /* 25.jpg */,
+			);
+			name = images;
+			sourceTree = "<group>";
+		};
 		FF5D5FD8159310FD00984C2F = {
 			isa = PBXGroup;
 			children = (
+				FF1CCA4F15942E7100745F68 /* LICENSE */,
+				FF1CCA5015942E7100745F68 /* README.md */,
+				FF5D60041593112600984C2F /* Classes */,
 				FF5D5FED159310FE00984C2F /* BDDynamicGridViewDemo */,
 				FF5D5FE6159310FE00984C2F /* Frameworks */,
 				FF5D5FE4159310FE00984C2F /* Products */,
@@ -81,7 +175,8 @@
 				FF5D5FF7159310FE00984C2F /* BDAppDelegate.m */,
 				FF5D5FF9159310FE00984C2F /* BDViewController.h */,
 				FF5D5FFA159310FE00984C2F /* BDViewController.m */,
-				FF5D5FFC159310FE00984C2F /* BDViewController.xib */,
+				F3B7DF5E159362AC00FF920B /* BDViewController+Private.h */,
+				F3B7DF5F159362AC00FF920B /* BDViewController+Private.m */,
 				FF5D5FEE159310FE00984C2F /* Supporting Files */,
 			);
 			path = BDDynamicGridViewDemo;
@@ -90,12 +185,23 @@
 		FF5D5FEE159310FE00984C2F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F3D84A651593E8AC00633ECD /* images */,
 				FF5D5FEF159310FE00984C2F /* BDDynamicGridViewDemo-Info.plist */,
 				FF5D5FF0159310FE00984C2F /* InfoPlist.strings */,
 				FF5D5FF3159310FE00984C2F /* main.m */,
 				FF5D5FF5159310FE00984C2F /* BDDynamicGridViewDemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FF5D60041593112600984C2F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FF5D60051593117100984C2F /* BDDynamicGridViewController.h */,
+				FF5D60081593122200984C2F /* BDDynamicGridViewDelegate.h */,
+				FF5D60061593117100984C2F /* BDDynamicGridViewController.m */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -150,7 +256,33 @@
 			buildActionMask = 2147483647;
 			files = (
 				FF5D5FF2159310FE00984C2F /* InfoPlist.strings in Resources */,
-				FF5D5FFE159310FE00984C2F /* BDViewController.xib in Resources */,
+				F3D84A801593E8B900633ECD /* 1.jpg in Resources */,
+				F3D84A811593E8B900633ECD /* 2.jpg in Resources */,
+				F3D84A821593E8B900633ECD /* 3.jpg in Resources */,
+				F3D84A831593E8B900633ECD /* 4.jpg in Resources */,
+				F3D84A841593E8B900633ECD /* 5.jpg in Resources */,
+				F3D84A851593E8B900633ECD /* 6.jpg in Resources */,
+				F3D84A861593E8B900633ECD /* 7.jpg in Resources */,
+				F3D84A871593E8B900633ECD /* 8.jpg in Resources */,
+				F3D84A881593E8B900633ECD /* 9.jpg in Resources */,
+				F3D84A891593E8B900633ECD /* 10.jpg in Resources */,
+				F3D84A8A1593E8B900633ECD /* 11.jpg in Resources */,
+				F3D84A8B1593E8B900633ECD /* 12.jpg in Resources */,
+				F3D84A8C1593E8B900633ECD /* 13.jpg in Resources */,
+				F3D84A8D1593E8B900633ECD /* 14.jpg in Resources */,
+				F3D84A8E1593E8B900633ECD /* 15.jpg in Resources */,
+				F3D84A8F1593E8B900633ECD /* 16.jpg in Resources */,
+				F3D84A901593E8B900633ECD /* 17.jpg in Resources */,
+				F3D84A911593E8B900633ECD /* 18.jpg in Resources */,
+				F3D84A921593E8B900633ECD /* 19.jpg in Resources */,
+				F3D84A931593E8B900633ECD /* 20.jpg in Resources */,
+				F3D84A941593E8B900633ECD /* 21.jpg in Resources */,
+				F3D84A951593E8B900633ECD /* 22.jpg in Resources */,
+				F3D84A961593E8B900633ECD /* 23.jpg in Resources */,
+				F3D84A971593E8B900633ECD /* 24.jpg in Resources */,
+				F3D84A981593E8B900633ECD /* 25.jpg in Resources */,
+				FF1CCA5115942E7100745F68 /* LICENSE in Resources */,
+				FF1CCA5215942E7100745F68 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,6 +296,8 @@
 				FF5D5FF4159310FE00984C2F /* main.m in Sources */,
 				FF5D5FF8159310FE00984C2F /* BDAppDelegate.m in Sources */,
 				FF5D5FFB159310FE00984C2F /* BDViewController.m in Sources */,
+				FF5D60071593117100984C2F /* BDDynamicGridViewController.m in Sources */,
+				F3B7DF60159362AC00FF920B /* BDViewController+Private.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,14 +310,6 @@
 				FF5D5FF1159310FE00984C2F /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		FF5D5FFC159310FE00984C2F /* BDViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				FF5D5FFD159310FE00984C2F /* en */,
-			);
-			name = BDViewController.xib;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -275,6 +401,7 @@
 				FF5D6003159310FE00984C2F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
