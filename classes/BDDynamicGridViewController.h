@@ -35,15 +35,46 @@
 
 #import <UIKit/UIKit.h>
 #import "BDDynamicGridViewDelegate.h"
+
+
+/**
+ This class displays a UIView list in a layout inspired by Flickr's 2012
+ Favorite page. (See http://blog.flickr.net/en/2012/03/22/your-favorites-page-now-with-justified-view/)
+ 
+ This class requires a delegate as a both data source. (For method delegators, 
+ we favors blocks instead.) The
+ delegate class must implement BDDynamicGridViewDelegate protocol and be set as 
+ the delegate for this controller.
+ 
+ ##How it works
+ 
+ Basically, you need to decide the number of columns for each row for the UIViews
+ to be displayed. Then this class layout each UIView on each row by evenly
+ justify them.
+ 
+ */
 @interface BDDynamicGridViewController : UIViewController 
 
+/**
+ @name Tasks
+ */
+
+/**
+ Reload the entire view.
+ */
 - (void)reloadData;
 
+/**
+ @name Properties
+ */
 @property (nonatomic, strong) id<BDDynamicGridViewDelegate> delegate;
 @property (nonatomic, assign) CGFloat rowHeight;
 @property (nonatomic, assign) CGFloat borderWidth;
 
 
+/**
+ @name Method delegator blocks
+ */
 @property (nonatomic, copy) void (^onLongPress)(UIView* view, NSUInteger);
 @property (nonatomic, copy) void (^onDoubleTap)(UIView* view, NSUInteger);
 
