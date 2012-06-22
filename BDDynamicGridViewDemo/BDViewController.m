@@ -9,7 +9,7 @@
 #import "BDViewController.h"
 #import "BDViewController+Private.h"
 @interface BDViewController (){
-    NSArray * _items;
+   
 }
 @end
 
@@ -32,11 +32,7 @@
     self.gridLayoutStyle = BDDynamicGridLayoutStyleFill;
     
     [super viewDidLoad];
-    
-    [self _loadSampleDataWithCompletion:^(NSArray *images) {
-        _items = images; 
-        [self reloadData];
-    }];
+    [self _demoAsyncDataLoading];
 }
 
 
@@ -53,10 +49,7 @@
 
 - (UIView *)viewAtIndex:(NSUInteger)index
 {
-    UIImage * img = [_items objectAtIndex:index];
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, img.size.width, img.size.height)];
-    imageView.image = img;
-    imageView.clipsToBounds = YES;
+    UIImageView * imageView = [_items objectAtIndex:index];
     return imageView;
 }
 

@@ -9,5 +9,5 @@
 #import "BDViewController.h"
 
 @interface BDViewController (Private) 
-- (void) _loadSampleDataWithCompletion:(void(^)(NSArray*))completion;
+- (void) _demoAsyncDataLoading;
 @end
