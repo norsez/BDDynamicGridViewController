@@ -37,6 +37,7 @@
 		FF1CCA5215942E7100745F68 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = FF1CCA5015942E7100745F68 /* README.md */; };
 		FF52D5CD15946A490037D45B /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = FF52D5CC15946A490037D45B /* placeholder.png */; };
 		FF52D5E7159483BE0037D45B /* BDDynamicGridViewController.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FF52D5E6159483BE0037D45B /* BDDynamicGridViewController.podspec */; };
+		FF52D5F21594862B0037D45B /* BDDynamicGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF52D5F01594862B0037D45B /* BDDynamicGridViewController.m */; };
 		FF5D5FE8159310FE00984C2F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5D5FE7159310FE00984C2F /* UIKit.framework */; };
 		FF5D5FEA159310FE00984C2F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5D5FE9159310FE00984C2F /* Foundation.framework */; };
 		FF5D5FEC159310FE00984C2F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5D5FEB159310FE00984C2F /* CoreGraphics.framework */; };
@@ -44,7 +45,6 @@
 		FF5D5FF4159310FE00984C2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5D5FF3159310FE00984C2F /* main.m */; };
 		FF5D5FF8159310FE00984C2F /* BDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5D5FF7159310FE00984C2F /* BDAppDelegate.m */; };
 		FF5D5FFB159310FE00984C2F /* BDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5D5FFA159310FE00984C2F /* BDViewController.m */; };
-		FF5D60071593117100984C2F /* BDDynamicGridViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5D60061593117100984C2F /* BDDynamicGridViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +79,9 @@
 		FF1CCA5015942E7100745F68 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		FF52D5CC15946A490037D45B /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = placeholder.png; path = images/placeholder.png; sourceTree = "<group>"; };
 		FF52D5E6159483BE0037D45B /* BDDynamicGridViewController.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = BDDynamicGridViewController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		FF52D5EF1594862B0037D45B /* BDDynamicGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicGridViewController.h; sourceTree = "<group>"; };
+		FF52D5F01594862B0037D45B /* BDDynamicGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDynamicGridViewController.m; sourceTree = "<group>"; };
+		FF52D5F11594862B0037D45B /* BDDynamicGridViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicGridViewDelegate.h; sourceTree = "<group>"; };
 		FF5D5FE3159310FE00984C2F /* BDDynamicGridViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BDDynamicGridViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FF5D5FE7159310FE00984C2F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FF5D5FE9159310FE00984C2F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -91,9 +94,6 @@
 		FF5D5FF7159310FE00984C2F /* BDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDAppDelegate.m; sourceTree = "<group>"; };
 		FF5D5FF9159310FE00984C2F /* BDViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BDViewController.h; sourceTree = "<group>"; };
 		FF5D5FFA159310FE00984C2F /* BDViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BDViewController.m; sourceTree = "<group>"; };
-		FF5D60051593117100984C2F /* BDDynamicGridViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BDDynamicGridViewController.h; path = classes/BDDynamicGridViewController.h; sourceTree = "<group>"; };
-		FF5D60061593117100984C2F /* BDDynamicGridViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BDDynamicGridViewController.m; path = classes/BDDynamicGridViewController.m; sourceTree = "<group>"; };
-		FF5D60081593122200984C2F /* BDDynamicGridViewDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = BDDynamicGridViewDelegate.h; path = classes/BDDynamicGridViewDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,13 +143,23 @@
 			name = images;
 			sourceTree = "<group>";
 		};
+		FF52D5EE1594862B0037D45B /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FF52D5EF1594862B0037D45B /* BDDynamicGridViewController.h */,
+				FF52D5F01594862B0037D45B /* BDDynamicGridViewController.m */,
+				FF52D5F11594862B0037D45B /* BDDynamicGridViewDelegate.h */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
 		FF5D5FD8159310FD00984C2F = {
 			isa = PBXGroup;
 			children = (
 				FF52D5E6159483BE0037D45B /* BDDynamicGridViewController.podspec */,
 				FF1CCA4F15942E7100745F68 /* LICENSE */,
 				FF1CCA5015942E7100745F68 /* README.md */,
-				FF5D60041593112600984C2F /* Classes */,
+				FF52D5EE1594862B0037D45B /* Classes */,
 				FF5D5FED159310FE00984C2F /* BDDynamicGridViewDemo */,
 				FF5D5FE6159310FE00984C2F /* Frameworks */,
 				FF5D5FE4159310FE00984C2F /* Products */,
@@ -198,16 +208,6 @@
 				FF5D5FF5159310FE00984C2F /* BDDynamicGridViewDemo-Prefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		FF5D60041593112600984C2F /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				FF5D60051593117100984C2F /* BDDynamicGridViewController.h */,
-				FF5D60081593122200984C2F /* BDDynamicGridViewDelegate.h */,
-				FF5D60061593117100984C2F /* BDDynamicGridViewController.m */,
-			);
-			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,8 +304,8 @@
 				FF5D5FF4159310FE00984C2F /* main.m in Sources */,
 				FF5D5FF8159310FE00984C2F /* BDAppDelegate.m in Sources */,
 				FF5D5FFB159310FE00984C2F /* BDViewController.m in Sources */,
-				FF5D60071593117100984C2F /* BDDynamicGridViewController.m in Sources */,
 				F3B7DF60159362AC00FF920B /* BDViewController+Private.m in Sources */,
+				FF52D5F21594862B0037D45B /* BDDynamicGridViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
