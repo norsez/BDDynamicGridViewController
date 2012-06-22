@@ -33,6 +33,8 @@
 
 #import "BDDynamicGridViewController.h"
 
+#define kDefaultBorderWidth 5
+
 @interface BDDynamicGridViewController  () <UITableViewDelegate, UITableViewDataSource>{
     UITableView *_tableView;
 }
@@ -58,7 +60,8 @@
     _tableView.dataSource = self;
     _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = [UIColor blackColor];
-    self.borderWidth = 5;
+    _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+    self.borderWidth = kDefaultBorderWidth;
     [self.view addSubview:_tableView];
     [_tableView reloadData];
     
@@ -68,6 +71,12 @@
 {
     [super viewDidUnload];
     _tableView = nil;
+}
+
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    [_tableView reloadData];
+    return [super shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
 }
 
 #pragma mark - Table view data source
@@ -115,7 +124,9 @@
     NSUInteger end = MIN(start + numberOfColumns, self.delegate.numberOfViews );
 
     for(int i = start; i < end; i++){
-        [cell.contentView addSubview:[self.delegate viewAtIndex:i]];
+        UIView *viewToAdd = [self.delegate viewAtIndex:i];
+        viewToAdd.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        [cell.contentView addSubview:viewToAdd];
         cell.contentView.tag = indexPath.row;
     }
     

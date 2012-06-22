@@ -58,4 +58,11 @@
     return imageView;
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
+{
+    //Call super when overriding this method, in order to benefit from auto layout.
+    [super shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
+    return YES;
+}
+
 @end

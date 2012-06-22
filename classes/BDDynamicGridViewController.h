@@ -60,22 +60,44 @@
  */
 
 /**
- Reload the entire view.
+ Reload the entire view by asking the delegate for the latest data.
  */
 - (void)reloadData;
 
 /**
  @name Properties
  */
+
+/**
+ The delegate of this class. Can be nil, but nothing will display.
+ */
 @property (nonatomic, strong) id<BDDynamicGridViewDelegate> delegate;
+
+/**
+ The height of each row.
+ */
 @property (nonatomic, assign) CGFloat rowHeight;
+
+/**
+ Top, left, right, buttom margin of each UIView in layout.
+ */
 @property (nonatomic, assign) CGFloat borderWidth;
 
 
 /**
  @name Method delegator blocks
  */
+
+/**
+ Block executed when a UIView is long pressed. 
+ The block is supplied by the view and its index in the UIView list.
+ */
 @property (nonatomic, copy) void (^onLongPress)(UIView* view, NSInteger);
+
+/**
+ Block executed when a UIView is double tapped.
+ The block is supplied by the view and its index in the UIView list.
+ */
 @property (nonatomic, copy) void (^onDoubleTap)(UIView* view, NSInteger);
 
 @end
