@@ -1,4 +1,4 @@
-#BDDynamicGridViewController - Data-aware UIView with layout inspired by Flickr's 2012 Favorite Page
+#BDDynamicGridViewController - Data-aware UIViewController that displays a UIView list with layout inspired by Flickr's 2012 Favorite Page
 
 This view-controller displays a list of UIViews with layout inspired by Flickr's 2012 Favorite Page (See http://blog.flickr.net/en/2012/03/22/your-favorites-page-now-with-justified-view/)
 
