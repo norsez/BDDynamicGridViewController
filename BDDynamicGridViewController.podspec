@@ -9,5 +9,6 @@ Pod::Spec.new do |s|
   s.description = 'This view-controller displays a list of UIViews with layout inspired by Flickr 2012 Favorite Page'
   s.platform = :ios
   s.source_files = 'Classes', 'Classes'
+  s.clean_paths = '*.xcodeproj', 'BDDynamicGridViewDemo/*'
   s.requires_arc = true
 end
