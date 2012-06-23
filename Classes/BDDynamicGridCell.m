@@ -85,7 +85,10 @@
         //assume that for UIImageView, the size we want is the image size
         if ([subview isKindOfClass:[UIImageView class]]){
             UIImageView *iv = (UIImageView*)subview;
-            iv.frame = CGRectMake(0, 0, iv.image.size.width, iv.image.size.height);
+            if (iv.image != nil && iv.image.size.width > 0) {
+                iv.frame = CGRectMake(0, 0, iv.image.size.width, iv.image.size.height);
+            }
+
         }
         totalWidth = totalWidth + subview.frame.size.width;
     }
