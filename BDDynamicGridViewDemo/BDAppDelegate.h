@@ -15,5 +15,6 @@
 @property (strong, nonatomic) UIWindow *window;
 
 @property (strong, nonatomic) BDViewController *viewController;
+@property (strong, nonatomic) UINavigationController *navigationController;
 
 @end

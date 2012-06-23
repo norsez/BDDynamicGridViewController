@@ -1,5 +1,5 @@
 //
-//  BDDynamicGridViewDelegate.h
+//  BDRowInfo.h
 //  BDDynamicGridViewDemo
 //
 //  Created by Nor Oh on 6/23/12.
@@ -32,13 +32,16 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //  POSSIBILITY OF SUCH DAMAGE.
 
-#import <UIKit/UIKit.h>
-
-@protocol BDDynamicGridViewDelegate <NSObject>
-
-- (NSUInteger)maximumViewsPerCell;
-- (NSUInteger)numberOfViews;
-- (UIView*) viewAtIndex:(NSUInteger)index;
 
 
+#import <Foundation/Foundation.h>
+
+/**
+ Placeholder for cell associated data.
+ */
+@interface BDRowInfo : NSObject
+@property (nonatomic, assign) NSUInteger viewsPerCell;
+@property (nonatomic, assign) NSUInteger accumulatedCells;
+@property (nonatomic, assign) NSUInteger order;
+@property (nonatomic, assign) BOOL isLastCell;
 @end

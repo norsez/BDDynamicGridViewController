@@ -2,6 +2,7 @@
 //  BDDynamicGridViewController.m
 //  BDDynamicGridViewDemo
 //
+//  Created by Nor Oh on 6/23/12.
 //
 //  Copyright (c) 2012, Norsez Orankijanan (Bluedot) All Rights Reserved.
 //
@@ -32,22 +33,23 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 
 #import "BDDynamicGridViewController.h"
-
+#import "BDDynamicGridCell.h"
+#import "BDRowInfo.h"
 #define kDefaultBorderWidth 5
+
+
 
 @interface BDDynamicGridViewController  () <UITableViewDelegate, UITableViewDataSource>{
     UITableView *_tableView;
+    NSArray *_numberOfViewsOnRow;
 }
 @end
 
 @implementation BDDynamicGridViewController
-
 - (id)init
 {
     self = [self initWithNibName:nil bundle:nil];
-    if (self) {
-
-    }
+    if (self) {}
     return self;
 }
 
@@ -62,8 +64,9 @@
     _tableView.backgroundColor = [UIColor blackColor];
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
     self.borderWidth = kDefaultBorderWidth;
+    _tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:_tableView];
-    [_tableView reloadData];
+    [self reloadData];
     
 }
 
@@ -88,41 +91,42 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger total = (int) (((double)self.delegate.numberOfViews/self.delegate.numberOfColumns ));
-    if (total * self.delegate.numberOfColumns < self.delegate.numberOfViews) {
-        total = total + 1;
-    }
-    return total;
+    return _numberOfViewsOnRow.count;
 }
 
 
-
-- (CGRect) rectForView:(UIView*)view
+- (void)reloadData
 {
-    if (self.gridLayoutStyle == BDDynamicGridLayoutStyleFill) {
-        if (view.frame.size.width > view.frame.size.height) {
-            return CGRectMake(0, 0, self.rowHeight * 3.0 / 2.0, self.rowHeight);
-        }else {
-            return CGRectMake(0, 0, self.rowHeight * 2.0 / 3.0, self.rowHeight);
-        }
-    }else if (self.gridLayoutStyle == BDDynamicGridLayoutStyleEven){
-        return CGRectMake(0, 0, view.frame.size.width, view.frame.size.height);
+    //rearrange views on the table by recalculating row infos
+    _numberOfViewsOnRow = [NSArray new];
+    NSUInteger accumCells = 0;
+    BDRowInfo * ri;
+    while (accumCells < self.delegate.numberOfViews) {
+        NSUInteger numOfViews = (arc4random() % self.delegate.maximumViewsPerCell) + 1;        
+        numOfViews = (accumCells+numOfViews <= self.delegate.numberOfViews)?numOfViews:(self.delegate.numberOfViews-accumCells);
+        ri = [BDRowInfo new];
+        ri.order = _numberOfViewsOnRow.count;
+        ri.accumulatedCells = accumCells;
+        ri.viewsPerCell = numOfViews;
+        accumCells = accumCells + numOfViews;
+        _numberOfViewsOnRow = [_numberOfViewsOnRow arrayByAddingObject:ri];
     }
-    return CGRectZero;
+    ri.isLastCell = YES;
+    NSAssert(accumCells == self.delegate.numberOfViews, @"wrong accum %@ ", ri.accumulatedCells);
+    [_tableView reloadData];
 }
+
 
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    BDDynamicGridCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        cell.contentView.clipsToBounds = YES;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell = [[BDDynamicGridCell alloc] initWithLayoutStyle:BDDynamicGridCellLayoutStyleFill
+                                              reuseIdentifier:CellIdentifier];
         
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPress:)];
         longPress.numberOfTouchesRequired = 1;
@@ -133,67 +137,32 @@
         [cell.contentView addGestureRecognizer:doubleTap];
     }
     
-    for (UIView *v in cell.contentView.subviews) {
-        [v removeFromSuperview];
+    //clear for updated list of views
+    [cell setViews:nil];
+    cell.viewBorderWidth = self.borderWidth;
+    BDRowInfo *ri = [_numberOfViewsOnRow objectAtIndex:indexPath.row];
+    cell.rowInfo = ri;
+    NSArray * viewsForRow = [NSArray array];
+    for (int i=0; i<ri.viewsPerCell; i++) {
+        viewsForRow = [viewsForRow arrayByAddingObject:[self.delegate viewAtIndex:i + ri.accumulatedCells]];
     }
-    
-    NSUInteger numberOfColumns = self.delegate.numberOfColumns;
-    NSUInteger start = indexPath.row * numberOfColumns;
-    NSUInteger end = MIN(start + numberOfColumns, self.delegate.numberOfViews );
-
-    for(int i = start; i < end; i++){
-        UIView *viewToAdd = [self.delegate viewAtIndex:i];
-        viewToAdd.frame = [self rectForView:viewToAdd];
-        viewToAdd.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        if  (self.gridLayoutStyle == BDDynamicGridLayoutStyleFill){
-            viewToAdd.contentMode = UIViewContentModeScaleAspectFill;
-        }else if(self.gridLayoutStyle == BDDynamicGridLayoutStyleEven){
-            viewToAdd.contentMode = UIViewContentModeScaleAspectFit;
-        }
-
-        [cell.contentView addSubview:viewToAdd];        
-        cell.contentView.tag = indexPath.row;        
-    }
+    NSAssert(viewsForRow.count > 0, @"number of views per row must be greater than 0");
+    [cell setViews:viewsForRow];
     
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    //layout what's in the cell
-    CGFloat aRowHeight = [self tableView:_tableView heightForRowAtIndexPath:indexPath];
-    CGFloat totalWidth = 0;
-    for (UIView* subview in cell.contentView.subviews){       
-        totalWidth = totalWidth + subview.frame.size.width + (self.borderWidth * 2);
-    }
-    CGFloat widthScaling =  (cell.contentView.frame.size.width/totalWidth);
-    CGFloat accumWidth = self.borderWidth;
-    
-    for (UIView* subview in cell.contentView.subviews){
-        subview.frame = CGRectMake(0, 0, subview.frame.size.width * widthScaling, aRowHeight - (self.borderWidth * 2.0));
-        subview.frame = CGRectOffset(subview.frame, accumWidth, 0);
-        accumWidth = accumWidth + subview.frame.size.width + self.borderWidth;
-    }
-
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     return self.rowHeight>0?self.rowHeight:_tableView.rowHeight;
 }
-
-- (void)reloadData
-{
-    [_tableView reloadData];
-}
-
 #pragma mark - events
 
 - (void)gesture:(UIGestureRecognizer*)gesture view:(UIView**)view viewIndex:(NSInteger*)viewIndex
 {
     if (gesture.state == UIGestureRecognizerStateEnded) {
         
-        NSUInteger row = gesture.view.tag;
+        BDDynamicGridCell *cell = (BDDynamicGridCell*) [gesture.view superview];
         
         CGPoint tapPoint = [gesture locationInView:gesture.view];
         NSArray *viewsSortedByXDesc = [gesture.view.subviews sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
@@ -204,7 +173,7 @@
         
         if (viewsSortedByXDesc.count == 1) {   
             *view = [viewsSortedByXDesc objectAtIndex:0];
-            *viewIndex = (row * self.delegate.numberOfColumns);
+            *viewIndex = (cell.rowInfo.accumulatedCells);
             return;
         }
         
@@ -227,7 +196,7 @@
         index = index - 1;
         
         *view = tappedView;
-        *viewIndex = ((row * self.delegate.numberOfColumns) + index);
+        *viewIndex = ((cell.rowInfo.accumulatedCells) + index);
     }
 }
 
@@ -263,5 +232,5 @@
 @synthesize rowHeight;
 @synthesize onLongPress;
 @synthesize onDoubleTap;
-@synthesize gridLayoutStyle;
+
 @end

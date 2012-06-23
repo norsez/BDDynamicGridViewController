@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F3A7ED4B159546800094D086 /* BDDynamicGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A7ED4A159546800094D086 /* BDDynamicGridCell.m */; };
+		F3A7ED4F159555ED0094D086 /* BDRowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A7ED4E159555ED0094D086 /* BDRowInfo.m */; };
 		F3B7DF60159362AC00FF920B /* BDViewController+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B7DF5F159362AC00FF920B /* BDViewController+Private.m */; };
 		F3D84A801593E8B900633ECD /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A671593E8B900633ECD /* 1.jpg */; };
 		F3D84A811593E8B900633ECD /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F3D84A681593E8B900633ECD /* 2.jpg */; };
@@ -48,6 +50,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F3A7ED49159546800094D086 /* BDDynamicGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicGridCell.h; sourceTree = "<group>"; };
+		F3A7ED4A159546800094D086 /* BDDynamicGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDynamicGridCell.m; sourceTree = "<group>"; };
+		F3A7ED4D159555ED0094D086 /* BDRowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDRowInfo.h; sourceTree = "<group>"; };
+		F3A7ED4E159555ED0094D086 /* BDRowInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDRowInfo.m; sourceTree = "<group>"; };
 		F3B7DF5E159362AC00FF920B /* BDViewController+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "BDViewController+Private.h"; sourceTree = "<group>"; };
 		F3B7DF5F159362AC00FF920B /* BDViewController+Private.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "BDViewController+Private.m"; sourceTree = "<group>"; };
 		F3D84A671593E8B900633ECD /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = 1.jpg; path = images/1.jpg; sourceTree = "<group>"; };
@@ -149,6 +155,10 @@
 				FF52D5EF1594862B0037D45B /* BDDynamicGridViewController.h */,
 				FF52D5F01594862B0037D45B /* BDDynamicGridViewController.m */,
 				FF52D5F11594862B0037D45B /* BDDynamicGridViewDelegate.h */,
+				F3A7ED49159546800094D086 /* BDDynamicGridCell.h */,
+				F3A7ED4A159546800094D086 /* BDDynamicGridCell.m */,
+				F3A7ED4D159555ED0094D086 /* BDRowInfo.h */,
+				F3A7ED4E159555ED0094D086 /* BDRowInfo.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -238,6 +248,7 @@
 			attributes = {
 				CLASSPREFIX = BD;
 				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = Bluedot;
 			};
 			buildConfigurationList = FF5D5FDD159310FD00984C2F /* Build configuration list for PBXProject "BDDynamicGridViewDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -306,6 +317,8 @@
 				FF5D5FFB159310FE00984C2F /* BDViewController.m in Sources */,
 				F3B7DF60159362AC00FF920B /* BDViewController+Private.m in Sources */,
 				FF52D5F21594862B0037D45B /* BDDynamicGridViewController.m in Sources */,
+				F3A7ED4B159546800094D086 /* BDDynamicGridCell.m in Sources */,
+				F3A7ED4F159555ED0094D086 /* BDRowInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

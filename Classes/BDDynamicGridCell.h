@@ -1,5 +1,5 @@
 //
-//  BDDynamicGridViewDelegate.h
+//  BDDynamicGridCell.h
 //  BDDynamicGridViewDemo
 //
 //  Created by Nor Oh on 6/23/12.
@@ -32,13 +32,56 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //  POSSIBILITY OF SUCH DAMAGE.
 
+
 #import <UIKit/UIKit.h>
+#import "BDRowInfo.h"
+/**
+ Layout style
+ */
+enum BDDynamicGridCellLayoutStyle {
+    /**
+    Each view is made aspect fit.
+     */
+    BDDynamicGridCellLayoutStyleEven = 0,
+    /**
+     Each view is made aspect fill and its size varying to fill the cell.
+     */
+    BDDynamicGridCellLayoutStyleFill = 1
+    };
+typedef NSUInteger BDDynamicGridCellLayoutStyle;
 
-@protocol BDDynamicGridViewDelegate <NSObject>
+/**
+ This class is responsible for laying out each table row.
+ */
+@interface BDDynamicGridCell : UITableViewCell{
+    
+}
+/**
+ Designated Initializer.
+ */
+- (id)initWithLayoutStyle:(BDDynamicGridCellLayoutStyle)layoutStyle reuseIdentifier:(NSString*)cellId;
 
-- (NSUInteger)maximumViewsPerCell;
-- (NSUInteger)numberOfViews;
-- (UIView*) viewAtIndex:(NSUInteger)index;
+
+/**
+ Sets UIViews the cell and lays them out in the process based on
+ the cell's BDDynamicGridCellLayoutStyle. 
+ 
+ To clear all views, set nil or zero NSArray to this method.
+ */
+- (void) setViews:(NSArray*)views;
+
+/**
+ the cell's BDDynamicGridCellLayoutStyle.
+ */
+@property (nonatomic, assign, readonly) BDDynamicGridCellLayoutStyle layoutStyle;
+/**
+ Width of each view's border.
+ */
+@property (nonatomic, assign) CGFloat viewBorderWidth;
+/**
+ row info associated with this cell.
+ */
+@property (nonatomic, strong) BDRowInfo* rowInfo;
 
 
 @end

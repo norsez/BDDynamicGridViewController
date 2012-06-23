@@ -17,7 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-   
+    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     self.rowHeight = 100;
     self.delegate = self;
     
@@ -28,11 +28,12 @@
     self.onDoubleTap = ^(UIView* view, NSInteger viewIndex){
         NSLog(@"Double tap on %@, at %d", view, viewIndex);
     };
-
-    self.gridLayoutStyle = BDDynamicGridLayoutStyleFill;
-    
     [super viewDidLoad];
     [self _demoAsyncDataLoading];
+    
+    UIBarButtonItem * reloadButton = [[UIBarButtonItem alloc] initWithTitle:@"Reload"
+                                                                      style:UIBarButtonItemStylePlain target:self action:@selector(reloadData)];
+    self.navigationItem.rightBarButtonItem = reloadButton;
 }
 
 
@@ -41,11 +42,10 @@
     return _items.count;
 }
 
-- (NSUInteger)numberOfColumns
+- (NSUInteger)maximumViewsPerCell
 {
-    return 4;
+    return 5;
 }
-
 
 - (UIView *)viewAtIndex:(NSUInteger)index
 {

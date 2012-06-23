@@ -1,5 +1,5 @@
 //
-//  BDDynamicGridViewDelegate.h
+//  BDRowInfo.m
 //  BDDynamicGridViewDemo
 //
 //  Created by Nor Oh on 6/23/12.
@@ -32,13 +32,19 @@
 //  ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
 //  POSSIBILITY OF SUCH DAMAGE.
 
-#import <UIKit/UIKit.h>
-
-@protocol BDDynamicGridViewDelegate <NSObject>
-
-- (NSUInteger)maximumViewsPerCell;
-- (NSUInteger)numberOfViews;
-- (UIView*) viewAtIndex:(NSUInteger)index;
 
 
+#import "BDRowInfo.h"
+
+@implementation BDRowInfo
+
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"<Row %d has %d views, and %d views before.>", order, viewsPerCell, accumulatedCells];
+}
+
+@synthesize order;
+@synthesize accumulatedCells;
+@synthesize viewsPerCell;
+@synthesize isLastCell;
 @end
