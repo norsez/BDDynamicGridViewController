@@ -80,19 +80,18 @@
     //layout what's in the cell
     CGFloat aRowHeight = self.frame.size.height;
     CGFloat totalWidth = 0;
-    for (UIView* subview in self.contentView.subviews){       
+    for (int i=0; i<self.contentView.subviews.count; i++){
+        UIView* subview = [self.contentView.subviews objectAtIndex:i];
         //assume that for UIImageView, the size we want is the image size
         if ([subview isKindOfClass:[UIImageView class]]){
             UIImageView *iv = (UIImageView*)subview;
             iv.frame = CGRectMake(0, 0, iv.image.size.width, iv.image.size.height);
         }
-        totalWidth = totalWidth + subview.frame.size.width + (self.viewBorderWidth * 2);
+        totalWidth = totalWidth + subview.frame.size.width;
     }
-    totalWidth = totalWidth - (self.viewBorderWidth * 2);//left/right most margin is 0.
     
     CGFloat widthScaling =  (self.contentView.frame.size.width/totalWidth);
     CGFloat accumWidth = self.viewBorderWidth;
-    
     UIView* lastView;
     for (int i=0; i<self.contentView.subviews.count; i++){
         UIView* subview = [self.contentView.subviews objectAtIndex:i];
