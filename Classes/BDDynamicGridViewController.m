@@ -154,7 +154,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.rowHeight>0?self.rowHeight:_tableView.rowHeight;
+    BDRowInfo *rowInfo = [_numberOfViewsOnRow objectAtIndex:indexPath.row];
+    return [self.delegate rowHeightForRowInfo:rowInfo];
 }
 #pragma mark - events
 
@@ -229,7 +230,6 @@
 
 @synthesize borderWidth;
 @synthesize delegate;
-@synthesize rowHeight;
 @synthesize onLongPress;
 @synthesize onDoubleTap;
 

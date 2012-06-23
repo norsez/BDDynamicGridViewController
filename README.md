@@ -1,12 +1,35 @@
-#BDDynamicGridViewController - Data-aware UIViewController that displays a UIView list with layout inspired by Flickr's 2012 Favorite Page
+#BDDynamicGridViewController - Data-aware view-controller that displays a UIView list in an automatically laid out grid.
 
-This view-controller displays a list of UIViews with layout inspired by Flickr's 2012 Favorite Page (See http://blog.flickr.net/en/2012/03/22/your-favorites-page-now-with-justified-view/)
+Data-aware view controller that displays a UIView list (typically, UIImageView list) in a row-dominated grid layout. This class automatically lay out the UIViews with help from a delegate class (which is supplier by you.)
 
-[![](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot.png)](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot.png)
+##Sample Screenshot (better viewed in the iOS demo project.)
 
-##Work in Progress 
-- It's working now. check out the demo. But in a very primative stage.
-- Work in progress. Consider it a pre-alpha.
+These are sample layout of the same UIView list automatically laid out by this class.
+
+[![](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot1.png)](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot1.png) [![](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot2.png)](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot2.png) [![](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot3.png)](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot3.png)
+
+##How to use
+###Installation 
+- Copy `.h/.m` files from the `Classes` folder into your code base
+
+###Implementation
+####`BDDynamicGridViewController`
+This is the main view controller initialized using `init`. Subclassing is recommended. Once initialized, set a delegate class to it. It receives delegate of type `BDDynamicGridViewDelegate`. See next. 
+
+One you have your delegate set up. Call `reloadData` to see the layout. Each call to `reloadData` creates a new layout.
+
+Once the view is loaded. User can tap on each view. There are two gestures supported, namely, long press and double tap. These are configurable using blocks through the following properties: `onLongPress` and `onDoubleTap`. Each block call is supplied with the gesture-recognized UIView and its index corresponding to the index in the `-viewAtIndex` method.
+
+
+####`BDDynamicGridViewDelegate`
+This is the delegate protocol needed by `BDDynamicGridViewController`. All methods are required to implement.
+
+- `-numberOfViews` returns the total count of UIViews to display.
+- `-viewAtIndex:` returns a UIView at an index specified.
+- `-maximumViewsPerCell` returns the maximum number of UIViews per row. `BDDynamicGridViewController` uses this method to determine how many UIViews it can fill in each row at the most.
+- `-rowHeightForRowInfo` `BDDynamicGridViewController` calls this method in order to set each row's height. The supplied `rowInfo` contains the information useful for the delegate to decide on the row height, such as, the number of UIViews contained in this row, etc.
+
+That's it!
 
 ##Requirements
 - Requires ARC

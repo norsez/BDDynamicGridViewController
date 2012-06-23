@@ -61,11 +61,6 @@
 @property (nonatomic, strong) id<BDDynamicGridViewDelegate> delegate;
 
 /**
- The height of each row.
- */
-@property (nonatomic, assign) CGFloat rowHeight;
-
-/**
  Top, left, right, buttom margin of each UIView in layout.
  */
 @property (nonatomic, assign) CGFloat borderWidth;

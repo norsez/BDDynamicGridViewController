@@ -33,12 +33,12 @@
 //  POSSIBILITY OF SUCH DAMAGE.
 
 #import <UIKit/UIKit.h>
-
+@class BDRowInfo;
 @protocol BDDynamicGridViewDelegate <NSObject>
 
 - (NSUInteger)maximumViewsPerCell;
 - (NSUInteger)numberOfViews;
 - (UIView*) viewAtIndex:(NSUInteger)index;
-
+- (CGFloat) rowHeightForRowInfo:(BDRowInfo*)rowInfo;
 
 @end

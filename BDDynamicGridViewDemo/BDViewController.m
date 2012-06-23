@@ -8,6 +8,7 @@
 
 #import "BDViewController.h"
 #import "BDViewController+Private.h"
+#import "BDRowInfo.h"
 @interface BDViewController (){
    
 }
@@ -18,7 +19,6 @@
 {
     [super viewDidLoad];
     self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
-    self.rowHeight = 100;
     self.delegate = self;
     
     self.onLongPress = ^(UIView* view, NSInteger viewIndex){
@@ -66,6 +66,16 @@
     //Call super when overriding this method, in order to benefit from auto layout.
     [super shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
     return YES;
+}
+
+- (CGFloat)rowHeightForRowInfo:(BDRowInfo *)rowInfo
+{
+//    if (rowInfo.viewsPerCell == 1) {
+//        return 125  + (arc4random() % 55);
+//    }else {
+//        return 100;
+//    }
+    return 55 + (arc4random() % 125);
 }
 
 @end

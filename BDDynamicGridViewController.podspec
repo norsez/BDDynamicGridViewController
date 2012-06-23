@@ -1,12 +1,12 @@
 Pod::Spec.new do |s|
   s.name     = 'BDDynamicGridViewController'
-  s.version  = '0.0.1'
+  s.version  = '0.0.2'
   s.license  = 'BSD'
-  s.summary  = 'Data-aware UIViewController that displays a UIView list with layout inspired by Flickr 2012 Favorite Page.'
+  s.summary  = 'Data-aware view-controller that displays a UIView list in an automatically laid out grid.'
   s.homepage = 'https://github.com/norsez/BDDynamicGridViewController'
   s.author   = { 'Norsez Orankijanan' => 'norsez@gmail.com' }
-  s.source   = { :git => 'https://github.com/norsez/BDDynamicGridViewController.git', :tag => '0.0.1' }
-  s.description = 'This view-controller displays a list of UIViews with layout inspired by Flickr 2012 Favorite Page'
+  s.source   = { :git => 'https://github.com/norsez/BDDynamicGridViewController.git', :tag => '0.0.2' }
+  s.description = 'Data-aware view-controller that displays a UIView list in an automatically laid out grid.'
   s.platform = :ios
   s.source_files = 'Classes', 'Classes'
   s.clean_paths = '*.xcodeproj', 'BDDynamicGridViewDemo/*'

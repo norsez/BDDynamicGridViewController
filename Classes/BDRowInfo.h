@@ -40,6 +40,7 @@
  Placeholder for cell associated data.
  */
 @interface BDRowInfo : NSObject
+
 @property (nonatomic, assign) NSUInteger viewsPerCell;
 @property (nonatomic, assign) NSUInteger accumulatedCells;
 @property (nonatomic, assign) NSUInteger order;
