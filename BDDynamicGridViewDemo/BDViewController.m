@@ -31,9 +31,17 @@
     [super viewDidLoad];
     [self _demoAsyncDataLoading];
     
-    UIBarButtonItem * reloadButton = [[UIBarButtonItem alloc] initWithTitle:@"Reload"
-                                                                      style:UIBarButtonItemStylePlain target:self action:@selector(reloadData)];
+    UIBarButtonItem * reloadButton = [[UIBarButtonItem alloc] initWithTitle:@"Lay it!"
+                                                                      style:UIBarButtonItemStylePlain 
+                                                                     target:self 
+                                                                     action:@selector(animateReload)];
     self.navigationItem.rightBarButtonItem = reloadButton;
+}
+
+- (void)animateReload
+{
+    _items = [NSArray new];
+    [self _demoAsyncDataLoading];
 }
 
 

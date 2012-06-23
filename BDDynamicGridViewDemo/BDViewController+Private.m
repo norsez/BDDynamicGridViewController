@@ -41,18 +41,27 @@
         UIImageView *imageView = [_items objectAtIndex:i];
         UIImage *image = [images objectAtIndex:i];
         imageView.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-        [UIView animateWithDuration:0.5 
-                         animations:^{
-                             imageView.alpha = 0.f;
-                         } completion:^(BOOL finished) {
-                             imageView.image = image;
-                             [UIView animateWithDuration:0.5
-                                              animations:^{
-                                                  imageView.alpha = 1;
-                                                  
-                                              }];
-                         }];
+        
+        [self performSelector:@selector(animateUpdate:) 
+                   withObject:[NSArray arrayWithObjects:imageView, image, nil]
+                   afterDelay:0.2 + (arc4random()%3) + (arc4random() %10 * 0.1)];
     }
+}
+
+- (void) animateUpdate:(NSArray*)objects
+{
+    UIImageView *imageView = [objects objectAtIndex:0];
+    UIImage* image = [objects objectAtIndex:1];
+    [UIView animateWithDuration:0.5 
+                     animations:^{
+                         imageView.alpha = 0.f;
+                     } completion:^(BOOL finished) {
+                         imageView.image = image;
+                         [UIView animateWithDuration:0.5
+                                          animations:^{
+                                              imageView.alpha = 1;
+                                          }];
+                     }];
 }
 
 @end
