@@ -6,7 +6,7 @@ Data-aware view controller that displays a UIView list (typically, UIImageView l
 
 These are sample layout of the same UIView list automatically laid out by this class.
 
-[![](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot1.png)](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot1.png) [![](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot2.png)](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot2.png) [![](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot3.png)](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screenshot3.png)
+[![](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screencap1.png)](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screencap1.png) [![](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screencap2.png)](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screencap2.png) [![](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screencap3.png)](https://github.com/norsez/BDDynamicGridViewController/raw/master/BDDynamicGridViewDemo/screencap3.png)
 
 ##How to use
 ###Installation 
