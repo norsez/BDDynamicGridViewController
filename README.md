@@ -11,6 +11,9 @@ These are sample layout of the same UIView list automatically laid out by this c
 ##How to use
 ###Installation 
 - Copy `.h/.m` files from the `Classes` folder into your code base
+- Or you can use Cocoapods, add the following line into your Podfile
+
+    dependency 'BDDynamicGridViewController'
 
 ###Implementation
 ####`BDDynamicGridViewController`
