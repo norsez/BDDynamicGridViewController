@@ -1,6 +1,6 @@
 #BDDynamicGridViewController - Data-aware view-controller that displays a UIView list in an automatically laid out grid.
 
-Data-aware view controller that displays a UIView list (typically, UIImageView list) in a row-dominated grid layout. This class automatically lay out the UIViews with help from a delegate class (which is supplier by you.)
+Data-aware view controller that displays a UIView list (typically, UIImageView list) in a row-dominated grid layout. This class automatically lay out the UIViews with help from a delegate class (which is supplier by you.) The class is inspired by the beautiful [iCarousel](https://github.com/nicklockwood/iCarousel) class by [Nick Lockwood](https://github.com/nicklockwood)
 
 ##Sample Screenshot (better viewed in the iOS demo project.)
 
