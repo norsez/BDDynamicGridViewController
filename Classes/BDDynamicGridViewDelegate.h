@@ -41,4 +41,11 @@
 - (UIView*) viewAtIndex:(NSUInteger)index;
 - (CGFloat) rowHeightForRowInfo:(BDRowInfo*)rowInfo;
 
+
+@optional
+/**
+ Minimum number of views per row.
+ 1 is default if not implemented or when returning zero.
+ */
+- (NSUInteger)minimumViewsPerCell;
 @end
