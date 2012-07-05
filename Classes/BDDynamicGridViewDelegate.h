@@ -38,7 +38,19 @@
 
 - (NSUInteger)maximumViewsPerCell;
 - (NSUInteger)numberOfViews;
-- (UIView*) viewAtIndex:(NSUInteger)index;
+/**
+ @deprecated use viewAtIndex:rowInfo:
+ */
+- (UIView*) viewAtIndex:(NSUInteger)index __deprecated;
+
+/**
+ This method is called to retreive the view for displayed at the specified index.
+ @param index the index of the view
+ @param rowInfo the information of the row this view appears in.
+ @return the UIView to display at specified index.
+ */
+- (UIView*) viewAtIndex:(NSUInteger)index rowInfo:(BDRowInfo*)rowInfo;
+
 - (CGFloat) rowHeightForRowInfo:(BDRowInfo*)rowInfo;
 
 
