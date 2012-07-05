@@ -108,20 +108,20 @@
 {
     //rearrange views on the table by recalculating row infos
     _numberOfViewsOnRow = [NSArray new];
-    NSUInteger accumCells = 0;
+    NSUInteger accumNumOfViews = 0;
     BDRowInfo * ri;
-    while (accumCells < self.delegate.numberOfViews) {
+    while (accumNumOfViews < self.delegate.numberOfViews) {
         NSUInteger numOfViews = (arc4random() % self.delegate.maximumViewsPerCell) + 1;        
-        numOfViews = (accumCells+numOfViews <= self.delegate.numberOfViews)?numOfViews:(self.delegate.numberOfViews-accumCells);
+        numOfViews = (accumNumOfViews+numOfViews <= self.delegate.numberOfViews)?numOfViews:(self.delegate.numberOfViews-accumNumOfViews);
         ri = [BDRowInfo new];
         ri.order = _numberOfViewsOnRow.count;
-        ri.accumulatedCells = accumCells;
+        ri.accumulatedViews = accumNumOfViews;
         ri.viewsPerCell = numOfViews;
-        accumCells = accumCells + numOfViews;
+        accumNumOfViews = accumNumOfViews + numOfViews;
         _numberOfViewsOnRow = [_numberOfViewsOnRow arrayByAddingObject:ri];
     }
     ri.isLastCell = YES;
-    NSAssert(accumCells == self.delegate.numberOfViews, @"wrong accum %@ ", ri.accumulatedCells);
+    NSAssert(accumNumOfViews == self.delegate.numberOfViews, @"wrong accum %@ ", ri.accumulatedViews);
     [_tableView reloadData];
 }
 
@@ -153,7 +153,7 @@
     cell.rowInfo = ri;
     NSArray * viewsForRow = [NSArray array];
     for (int i=0; i<ri.viewsPerCell; i++) {
-        viewsForRow = [viewsForRow arrayByAddingObject:[self.delegate viewAtIndex:i + ri.accumulatedCells]];
+        viewsForRow = [viewsForRow arrayByAddingObject:[self.delegate viewAtIndex:i + ri.accumulatedViews]];
     }
     NSAssert(viewsForRow.count > 0, @"number of views per row must be greater than 0");
     [cell setViews:viewsForRow];
@@ -183,7 +183,7 @@
         
         if (viewsSortedByXDesc.count == 1) {   
             *view = [viewsSortedByXDesc objectAtIndex:0];
-            *viewIndex = (cell.rowInfo.accumulatedCells);
+            *viewIndex = (cell.rowInfo.accumulatedViews);
             return;
         }
         
@@ -206,7 +206,7 @@
         index = index - 1;
         
         *view = tappedView;
-        *viewIndex = ((cell.rowInfo.accumulatedCells) + index);
+        *viewIndex = ((cell.rowInfo.accumulatedViews) + index);
     }
 }
 

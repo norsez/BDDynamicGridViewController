@@ -40,11 +40,11 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<Row %d has %d views, and %d views before.>", order, viewsPerCell, accumulatedCells];
+    return [NSString stringWithFormat:@"<Row %d has %d views, and %d views before.>", order, viewsPerCell, accumulatedViews];
 }
 
 @synthesize order;
-@synthesize accumulatedCells;
+@synthesize accumulatedViews;
 @synthesize viewsPerCell;
 @synthesize isLastCell;
 @end
