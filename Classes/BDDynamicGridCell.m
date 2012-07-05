@@ -92,6 +92,8 @@
         }
         totalWidth = totalWidth + subview.frame.size.width;
     }
+    //add borders to total images's widths
+    totalWidth += (self.contentView.subviews.count + 1) * self.viewBorderWidth;
     
     CGFloat widthScaling =  (self.contentView.frame.size.width/totalWidth);
     CGFloat accumWidth = self.viewBorderWidth;
@@ -100,6 +102,7 @@
         UIView* subview = [self.contentView.subviews objectAtIndex:i];
         subview.frame = CGRectMake(0, 0, subview.frame.size.width * widthScaling, aRowHeight - self.viewBorderWidth);
         CGFloat leftMargin = i==0?0:(self.viewBorderWidth);
+        leftMargin = leftMargin * widthScaling;
         subview.frame = CGRectOffset(subview.frame, accumWidth + leftMargin, 0);
         accumWidth = accumWidth + subview.frame.size.width + leftMargin;
         lastView = subview;

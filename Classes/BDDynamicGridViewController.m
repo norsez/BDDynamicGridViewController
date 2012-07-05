@@ -41,7 +41,7 @@
 
 @interface BDDynamicGridViewController  () <UITableViewDelegate, UITableViewDataSource>{
     UITableView *_tableView;
-    NSArray *_numberOfViewsOnRow;
+    NSArray *_rowInfos;
 }
 @end
 
@@ -100,14 +100,14 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _numberOfViewsOnRow.count;
+    return _rowInfos.count;
 }
 
 
 - (void)reloadData
 {
     //rearrange views on the table by recalculating row infos
-    _numberOfViewsOnRow = [NSArray new];
+    _rowInfos = [NSArray new];
     NSUInteger accumNumOfViews = 0;
     BDRowInfo * ri;
     NSUInteger kMaxViewsPerCell = self.delegate.maximumViewsPerCell;
@@ -126,11 +126,11 @@
         }
         numOfViews = (accumNumOfViews+numOfViews <= self.delegate.numberOfViews)?numOfViews:(self.delegate.numberOfViews-accumNumOfViews);
         ri = [BDRowInfo new];
-        ri.order = _numberOfViewsOnRow.count;
+        ri.order = _rowInfos.count;
         ri.accumulatedViews = accumNumOfViews;
         ri.viewsPerCell = numOfViews;
         accumNumOfViews = accumNumOfViews + numOfViews;
-        _numberOfViewsOnRow = [_numberOfViewsOnRow arrayByAddingObject:ri];
+        _rowInfos = [_rowInfos arrayByAddingObject:ri];
     }
     ri.isLastCell = YES;
     NSAssert(accumNumOfViews == self.delegate.numberOfViews, @"wrong accum %@ ", ri.accumulatedViews);
@@ -161,7 +161,7 @@
     //clear for updated list of views
     [cell setViews:nil];
     cell.viewBorderWidth = self.borderWidth;
-    BDRowInfo *ri = [_numberOfViewsOnRow objectAtIndex:indexPath.row];
+    BDRowInfo *ri = [_rowInfos objectAtIndex:indexPath.row];
     cell.rowInfo = ri;
     NSArray * viewsForRow = [NSArray array];
     for (int i=0; i<ri.viewsPerCell; i++) {
@@ -175,7 +175,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BDRowInfo *rowInfo = [_numberOfViewsOnRow objectAtIndex:indexPath.row];
+    BDRowInfo *rowInfo = [_rowInfos objectAtIndex:indexPath.row];
     return [self.delegate rowHeightForRowInfo:rowInfo];
 }
 #pragma mark - events
