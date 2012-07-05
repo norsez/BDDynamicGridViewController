@@ -110,8 +110,20 @@
     _numberOfViewsOnRow = [NSArray new];
     NSUInteger accumNumOfViews = 0;
     BDRowInfo * ri;
+    NSUInteger kMaxViewsPerCell = self.delegate.maximumViewsPerCell;
+    NSUInteger kMinViewsPerCell = 1;
+    
+    if ([self.delegate respondsToSelector:@selector(minimumViewsPerCell)]) {
+        kMinViewsPerCell = self.delegate.minimumViewsPerCell==0?1:self.delegate.minimumViewsPerCell;
+    }
+    
+    NSAssert(kMinViewsPerCell <= kMaxViewsPerCell, @"Minimum number of views per row cannot be greater than maximum number of views per row.");
+    
     while (accumNumOfViews < self.delegate.numberOfViews) {
-        NSUInteger numOfViews = (arc4random() % self.delegate.maximumViewsPerCell) + 1;        
+        NSUInteger numOfViews = (arc4random() % kMaxViewsPerCell) + kMinViewsPerCell;   
+        if (numOfViews > kMaxViewsPerCell) {
+            numOfViews = kMaxViewsPerCell;
+        }
         numOfViews = (accumNumOfViews+numOfViews <= self.delegate.numberOfViews)?numOfViews:(self.delegate.numberOfViews-accumNumOfViews);
         ri = [BDRowInfo new];
         ri.order = _numberOfViewsOnRow.count;

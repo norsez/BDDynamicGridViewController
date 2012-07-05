@@ -75,12 +75,12 @@
  Block executed when a UIView is long pressed. 
  The block is supplied by the view and its index in the UIView list.
  */
-@property (nonatomic, copy) void (^onLongPress)(UIView* view, NSInteger);
+@property (nonatomic, copy) void (^onLongPress)(UIView*, NSInteger);
 
 /**
  Block executed when a UIView is double tapped.
  The block is supplied by the view and its index in the UIView list.
  */
-@property (nonatomic, copy) void (^onDoubleTap)(UIView* view, NSInteger);
+@property (nonatomic, copy) void (^onDoubleTap)(UIView*, NSInteger);
 
 @end
