@@ -165,7 +165,7 @@
     cell.rowInfo = ri;
     NSArray * viewsForRow = [NSArray array];
     for (int i=0; i<ri.viewsPerCell; i++) {
-        viewsForRow = [viewsForRow arrayByAddingObject:[self.delegate viewAtIndex:i + ri.accumulatedViews]];
+        viewsForRow = [viewsForRow arrayByAddingObject:[self.delegate viewAtIndex:i + ri.accumulatedViews rowInfo:ri]];
     }
     NSAssert(viewsForRow.count > 0, @"number of views per row must be greater than 0");
     [cell setViews:viewsForRow];
