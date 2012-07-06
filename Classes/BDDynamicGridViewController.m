@@ -91,6 +91,11 @@
     return [super shouldAutorotateToInterfaceOrientation:toInterfaceOrientation];
 }
 
+- (void)setBackgroundColor:(UIColor *)color
+{
+    _tableView.backgroundColor = color;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

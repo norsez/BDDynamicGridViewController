@@ -83,6 +83,11 @@
 - (void)updateLayoutWithRow:(BDRowInfo*)rowInfo animiated:(BOOL)animated;
 
 /**
+ @param color color for the background.
+ */
+- (void)setBackgroundColor:(UIColor*)color;
+
+/**
  @name Properties
  */
 
