@@ -140,10 +140,28 @@
 
 - (void)updateLayoutWithRow:(BDRowInfo *)rowInfo animiated:(BOOL)animated
 {
-//    [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:rowInfo.order inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
     BDDynamicGridCell *cell = (BDDynamicGridCell*) [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowInfo.order inSection:0]];
     [cell layoutSubviewsAnimated:animated];
 }
+
+- (UIView*)viewAtIndex:(NSUInteger)index
+{
+    BDRowInfo *_prevRow = nil;
+    UIView *view = nil;
+    for (BDRowInfo* rowInfo in _rowInfos) {
+        if (rowInfo.accumulatedViews >= index){
+            BDDynamicGridCell *cell =  (BDDynamicGridCell*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowInfo.order inSection:0]];
+            NSUInteger realIndex = index - _prevRow.accumulatedViews;
+            if (cell.subviews.count > realIndex) {
+                view = [cell.subviews objectAtIndex:realIndex];
+            }
+            break;
+        }
+        _prevRow = rowInfo;
+    }
+    return view;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

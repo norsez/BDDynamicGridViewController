@@ -47,6 +47,13 @@
  */
 
 /**
+ Retrieve the view at the specified index.
+ @param index the index of the view.
+ @return the view.
+ */
+- (UIView*) viewAtIndex:(NSUInteger)index;
+
+/**
  Reload the entire view by asking the delegate for the latest data.
  */
 - (void)reloadData;
