@@ -59,6 +59,12 @@
 - (NSArray*) visibleViews;
 
 /**
+ Metadata of the current layout rows.
+ @return list of BDRowInfo. Each BDRowInfo instance describes layout info of the current row.
+ */
+- (NSArray*) rowInfos;
+
+/**
  Reload the entire view by asking the delegate for the latest data.
  */
 - (void)reloadData;

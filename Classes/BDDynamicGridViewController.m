@@ -104,8 +104,17 @@
 }
 
 
+- (NSArray *)rowInfos
+{
+    return _rowInfos;
+}
+
 - (void)reloadData
 {
+    if (self.delegate == nil) {
+        return;
+    }
+    
     //rearrange views on the table by recalculating row infos
     _rowInfos = [NSArray new];
     NSUInteger accumNumOfViews = 0;
