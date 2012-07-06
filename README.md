@@ -39,6 +39,7 @@ That's it!
 
 
 ##How to use
+- Be sure to checkout the latest __tag__, as opposed to the latest commit. Only tagged points are stable.
 - Include h/.m files in Classes folder to your source code
 - or use [Cocoapods](https://github.com/CocoaPods/CocoaPods/), add the following line into your Podfile
 
