@@ -70,6 +70,9 @@ typedef NSUInteger BDDynamicGridCellLayoutStyle;
  */
 - (void) setViews:(NSArray*)views;
 
+
+- (void) layoutSubviewsAnimated:(BOOL)animated;
+
 /**
  the cell's BDDynamicGridCellLayoutStyle.
  */

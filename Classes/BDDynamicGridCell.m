@@ -74,9 +74,21 @@
     [super setSelected:selected animated:animated];
 }
 
-- (void)layoutSubviews
+- (void)layoutSubviews{
+    [self layoutSubviewsAnimated:NO];
+}
+
+- (void)layoutSubviewsAnimated:(BOOL)animated
 {
     [super layoutSubviews];
+    NSArray * oldFrames = [NSArray array];
+    if (animated) {
+        for (int i=0; i<self.contentView.subviews.count; i++){
+            UIView* subview = [self.contentView.subviews objectAtIndex:i];
+            oldFrames = [oldFrames arrayByAddingObject:[NSValue valueWithCGRect:subview.frame]];
+        }
+    }
+    
     //layout what's in the cell
     CGFloat aRowHeight = self.frame.size.height;
     CGFloat totalWidth = 0;
@@ -95,17 +107,39 @@
     CGFloat widthScaling =  ((self.contentView.frame.size.width - ((self.contentView.subviews.count+1) * self.viewBorderWidth ))/totalWidth);
     CGFloat accumWidth = self.viewBorderWidth;
     UIView* lastView;
+    NSArray *newFrames = [NSArray array];
     for (int i=0; i<self.contentView.subviews.count; i++){
         UIView* subview = [self.contentView.subviews objectAtIndex:i];
-        subview.frame = CGRectMake(0, 0, subview.frame.size.width * widthScaling, aRowHeight - self.viewBorderWidth);
+        CGRect newFrame = subview.frame;
+        newFrame = CGRectMake(0, 0, newFrame.size.width * widthScaling, aRowHeight - self.viewBorderWidth);
         CGFloat leftMargin = i==0?0:(self.viewBorderWidth);
-        subview.frame = CGRectOffset(subview.frame, accumWidth + leftMargin, 0);
-        accumWidth = accumWidth + subview.frame.size.width + leftMargin;
+        newFrame = CGRectOffset(newFrame, accumWidth + leftMargin, 0);
+        accumWidth = accumWidth + newFrame.size.width + leftMargin;
         lastView = subview;
+        newFrames = [newFrames arrayByAddingObject:[NSValue valueWithCGRect:newFrame]];
     }
     
-//NSLog(@"lastView %@", NSStringFromCGRect(lastView.frame));
-
+    if (!animated) {
+        for (int i=0; i<self.contentView.subviews.count; i++){
+            UIView* subview = [self.contentView.subviews objectAtIndex:i];
+            NSValue* newFrame = [newFrames objectAtIndex:i];
+            subview.frame = [newFrame CGRectValue];
+        }
+    }else {
+        for (int i=0; i<self.contentView.subviews.count; i++){
+            UIView* subview = [self.contentView.subviews objectAtIndex:i];
+            NSValue* oldFrame = [oldFrames objectAtIndex:i];
+            subview.frame = [oldFrame CGRectValue];
+        }
+        [UIView animateWithDuration:1.f
+                         animations:^{
+                             for (int i=0; i<self.contentView.subviews.count; i++){
+                                 UIView* subview = [self.contentView.subviews objectAtIndex:i];
+                                 NSValue* newFrame = [newFrames objectAtIndex:i];
+                                 subview.frame = [newFrame CGRectValue];
+                             } 
+                         }];
+    }
 }
 
 -(void)setViews:(NSArray *)views

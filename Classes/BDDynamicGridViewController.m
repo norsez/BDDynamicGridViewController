@@ -138,7 +138,12 @@
 }
 
 
-
+- (void)updateLayoutWithRow:(BDRowInfo *)rowInfo animiated:(BOOL)animated
+{
+//    [_tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:rowInfo.order inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+    BDDynamicGridCell *cell = (BDDynamicGridCell*) [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowInfo.order inSection:0]];
+    [cell layoutSubviewsAnimated:animated];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {

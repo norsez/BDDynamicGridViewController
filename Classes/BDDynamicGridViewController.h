@@ -52,6 +52,13 @@
 - (void)reloadData;
 
 /**
+ Refresh layout on a specific row.
+ @param rowInfo the row
+ @param animated YES to see animation of layout refresh.
+ */
+- (void)updateLayoutWithRow:(BDRowInfo*)rowInfo animiated:(BOOL)animated;
+
+/**
  @name Properties
  */
 
