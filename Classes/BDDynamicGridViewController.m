@@ -168,6 +168,16 @@
     return view;
 }
 
+- (NSArray *)visibleViews
+{
+    NSArray* cells = [_tableView visibleCells];
+    NSArray* visibleViews = [[NSArray alloc] init];
+    for (BDDynamicGridCell *cell in cells) {
+        visibleViews = [visibleViews arrayByAddingObjectsFromArray:cell.contentView.subviews];
+    }
+    return visibleViews;
+}
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -207,6 +217,38 @@
     BDRowInfo *rowInfo = [_rowInfos objectAtIndex:indexPath.row];
     return [self.delegate rowHeightForRowInfo:rowInfo];
 }
+
+#pragma mark - scrolling
+
+- (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
+{
+    DLog(@"scrollViewWillBeginDecelerating");
+}
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if([self.delegate respondsToSelector:@selector(gridViewDidEndScrolling)]){
+        [self.delegate gridViewDidEndScrolling];
+    }
+}
+
+
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(CGPoint *)targetContentOffset
+{
+    //DLog(@"will end dragging with vel %@ -> %@", NSStringFromCGPoint(velocity), NSStringFromCGPoint(*targetContentOffset));
+    if (velocity.y > 1.5) {
+        if ([self.delegate respondsToSelector:@selector(gridViewWillStartScrolling)]) {
+            [self.delegate gridViewWillStartScrolling];
+        }
+    }
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    DLog(@"did end dragging dec %d", decelerate);
+}
+
+
 
 #pragma mark - events
 

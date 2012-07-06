@@ -54,6 +54,11 @@
 - (UIView*) viewAtIndex:(NSUInteger)index;
 
 /**
+ @return the views that are currently visible.
+ */
+- (NSArray*) visibleViews;
+
+/**
  Reload the entire view by asking the delegate for the latest data.
  */
 - (void)reloadData;

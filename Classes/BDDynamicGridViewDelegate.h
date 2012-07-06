@@ -62,4 +62,23 @@
  @deprecated use viewAtIndex:rowInfo:
  */
 - (UIView*) viewAtIndex:(NSUInteger)index __deprecated;
+
+/**
+ @name Scrolling events
+ 
+ In order to help optimize view loading, the class provides these methods that
+ get called when events happen.
+ */
+
+/**
+ This method gets called when grid view is scrolled with some velocity.
+ Easy scrolling will not trigger this call.
+ */
+- (void) gridViewWillStartScrolling;
+
+/**
+ This method gets called when grid view's scrolling comes to a halt.
+ */
+- (void) gridViewDidEndScrolling;
+
 @end
