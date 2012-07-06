@@ -57,11 +57,7 @@
  1 is default if not implemented or when returning zero.
  */
 - (NSUInteger)minimumViewsPerCell;
-/**
- Do not use.
- @deprecated use viewAtIndex:rowInfo:
- */
-- (UIView*) viewAtIndex:(NSUInteger)index __deprecated;
+
 
 /**
  @name Scrolling events
