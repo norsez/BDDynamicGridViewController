@@ -10,8 +10,8 @@
 #import "BDViewController+Private.h"
 #import "BDRowInfo.h"
 @interface BDViewController (){
-   
 }
+
 @end
 
 @implementation BDViewController
@@ -28,14 +28,8 @@
     self.onDoubleTap = ^(UIView* view, NSInteger viewIndex){
         NSLog(@"Double tap on %@, at %d", view, viewIndex);
     };
-    [super viewDidLoad];
     [self _demoAsyncDataLoading];
-    
-    UIBarButtonItem * reloadButton = [[UIBarButtonItem alloc] initWithTitle:@"Lay it!"
-                                                                      style:UIBarButtonItemStylePlain 
-                                                                     target:self 
-                                                                     action:@selector(animateReload)];
-    self.navigationItem.rightBarButtonItem = reloadButton;
+    [self buildBarButtons];
 }
 
 - (void)animateReload
@@ -44,18 +38,17 @@
     [self _demoAsyncDataLoading];
 }
 
-
 - (NSUInteger)numberOfViews
 {
     return _items.count;
 }
 
-- (NSUInteger)maximumViewsPerCell
+-(NSUInteger)maximumViewsPerCell
 {
     return 5;
 }
 
-- (UIView *)viewAtIndex:(NSUInteger)index
+- (UIView *)viewAtIndex:(NSUInteger)index rowInfo:(BDRowInfo *)rowInfo
 {
     UIImageView * imageView = [_items objectAtIndex:index];
     return imageView;

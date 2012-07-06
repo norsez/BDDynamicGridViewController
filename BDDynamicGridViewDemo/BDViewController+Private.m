@@ -10,6 +10,18 @@
 #define kNumberOfPhotos 25
 @implementation BDViewController (Private)
 
+-(void)buildBarButtons
+{
+    UIBarButtonItem * reloadButton = [[UIBarButtonItem alloc] initWithTitle:@"Lay it!"
+                                                                      style:UIBarButtonItemStylePlain 
+                                                                     target:self 
+                                                                     action:@selector(animateReload)];
+
+    
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects: reloadButton, nil];
+
+}
+
 -(NSArray*)_imagesFromBundle
 {   
     NSArray *images = [NSArray array];
@@ -60,6 +72,11 @@
                          [UIView animateWithDuration:0.5
                                           animations:^{
                                               imageView.alpha = 1;
+                                          } completion:^(BOOL finished) {
+                                              NSArray *visibleRowInfos =  [self visibleRowInfos];
+                                              for (BDRowInfo *rowInfo in visibleRowInfos) {
+                                                  [self updateLayoutWithRow:rowInfo animiated:YES];
+                                              }
                                           }];
                      }];
 }
