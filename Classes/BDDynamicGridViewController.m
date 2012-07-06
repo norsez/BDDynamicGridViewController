@@ -106,7 +106,22 @@
 
 - (NSArray *)rowInfos
 {
+    NSArray *result = [NSArray array];
+    for (BDRowInfo* rowInfo in _rowInfos) {
+        result = [result arrayByAddingObject:[rowInfo copy]];
+    }
     return _rowInfos;
+}
+
+- (NSArray *)visibleRowInfos
+{
+    NSArray *indexPaths = [_tableView indexPathsForVisibleRows];
+    NSArray *result = [NSArray array];
+    for (NSIndexPath *idp in indexPaths) {
+        BDRowInfo *rowInfo = [_rowInfos objectAtIndex:idp.row];
+        result = [result arrayByAddingObject:[rowInfo copy]];
+    }
+    return result;
 }
 
 - (void)reloadData

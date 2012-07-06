@@ -59,6 +59,12 @@
 - (NSArray*) visibleViews;
 
 /**
+ 
+ @return BDRowInfo instances for the currently visible rows 
+ */
+- (NSArray*) visibleRowInfos;
+
+/**
  Metadata of the current layout rows.
  @return list of BDRowInfo. Each BDRowInfo instance describes layout info of the current row.
  */
