@@ -111,6 +111,7 @@
     NSUInteger accumNumOfViews = 0;
     BDRowInfo * ri;
     NSUInteger kMaxViewsPerCell = self.delegate.maximumViewsPerCell;
+    NSAssert(kMaxViewsPerCell>0, @"Maximum number of views per cell must be greater than zero");
     NSUInteger kMinViewsPerCell = 1;
     
     if ([self.delegate respondsToSelector:@selector(minimumViewsPerCell)]) {
