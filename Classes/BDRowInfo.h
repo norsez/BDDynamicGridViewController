@@ -46,7 +46,9 @@
  on the UITableViewCell. But _row_ is a better term for describing
  the dynamic grid layout.
  */
-@interface BDRowInfo : NSObject
+@interface BDRowInfo : NSObject <NSCoding, NSCopying>
+
+- (id)copy;
 
 /**
   The number of views contained in this row. 
