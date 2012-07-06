@@ -49,7 +49,7 @@
 /**
  Retrieve the view at the specified index.
  @param index the index of the view.
- @return the view.
+ @return the view, or nil if the view is not currently visible.
  */
 - (UIView*) viewAtIndex:(NSUInteger)index;
 

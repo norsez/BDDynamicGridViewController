@@ -146,19 +146,25 @@
 
 - (UIView*)viewAtIndex:(NSUInteger)index
 {
-    BDRowInfo *_prevRow = nil;
     UIView *view = nil;
-    for (BDRowInfo* rowInfo in _rowInfos) {
-        if (rowInfo.accumulatedViews >= index){
-            BDDynamicGridCell *cell =  (BDDynamicGridCell*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowInfo.order inSection:0]];
-            NSUInteger realIndex = index - _prevRow.accumulatedViews;
-            if (cell.subviews.count > realIndex) {
-                view = [cell.subviews objectAtIndex:realIndex];
-            }
-            break;
-        }
-        _prevRow = rowInfo;
-    }
+    BDRowInfo *findRow = [[BDRowInfo alloc] init];
+    findRow.accumulatedViews = index ;
+    
+    //use binary search for the cell that contains the specified index
+    NSUInteger indexOfRow = [_rowInfos indexOfObject:findRow
+               inSortedRange:(NSRange){0, _rowInfos.count  -1}
+                     options:NSBinarySearchingInsertionIndex|NSBinarySearchingLastEqual
+             usingComparator:^NSComparisonResult(id obj1, id obj2) {
+                 BDRowInfo *r1 = obj1;
+                 BDRowInfo *r2 = obj2;
+                 return (r1.accumulatedViews+r1.viewsPerCell) - (r2.accumulatedViews + r2.viewsPerCell);
+             }];
+    BDRowInfo *rowInfo = [_rowInfos objectAtIndex:indexOfRow];
+    
+    BDDynamicGridCell *cell =  (BDDynamicGridCell*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowInfo.order inSection:0]];
+    NSUInteger realIndex = index - rowInfo.accumulatedViews;
+    view = [cell.contentView.subviews objectAtIndex:realIndex];
+    
     return view;
 }
 
