@@ -76,6 +76,12 @@
 - (void)reloadData;
 
 /**
+ Reload the views in rows specified by the input BDRowInfo objects.
+ @param rowInfos list of BDRowInfo to be reloaded.
+ */
+- (void)reloadRows:(NSArray*)rowInfos;
+
+/**
  Refresh layout on a specific row.
  @param rowInfo the row
  @param animated YES to see animation of layout refresh.

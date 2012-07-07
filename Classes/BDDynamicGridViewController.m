@@ -129,6 +129,15 @@
     return result;
 }
 
+- (void)reloadRows:(NSArray *)rowInfos
+{
+    NSArray *indexPaths = [NSArray array];
+    for (BDRowInfo *row in indexPaths) {
+        indexPaths = [indexPaths arrayByAddingObject: [NSIndexPath indexPathForRow:row.order inSection:0]];
+    }
+    [_tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
+}
+
 - (void)reloadData
 {
     if (self.delegate == nil) {
@@ -249,24 +258,33 @@
 }
 
 #pragma mark - scrolling
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+//    DLog(@"willdecelerate %d", decelerate);
+    if([self.delegate respondsToSelector:@selector(gridViewWillEndScrolling)]){
+        [self.delegate gridViewWillEndScrolling];
+    }
+}
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
+//    DLog(@"did end decel");
     if([self.delegate respondsToSelector:@selector(gridViewDidEndScrolling)]){
         [self.delegate gridViewDidEndScrolling];
     }
 }
 
-
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(CGPoint *)targetContentOffset
+- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView 
+                     withVelocity:(CGPoint)velocity 
+              targetContentOffset:(CGPoint *)targetContentOffset
 {
+//    DLog(@"will end dragging vel: %@", NSStringFromCGPoint(velocity));
     if (velocity.y > 1.5) {
         if ([self.delegate respondsToSelector:@selector(gridViewWillStartScrolling)]) {
             [self.delegate gridViewWillStartScrolling];
         }
     }
 }
-
 
 #pragma mark - events
 

@@ -73,6 +73,12 @@
 - (void) gridViewWillStartScrolling;
 
 /**
+ This method gets called when grid view's scrolling is going to halt.
+ */
+- (void) gridViewWillEndScrolling;
+
+
+/**
  This method gets called when grid view's scrolling comes to a halt.
  */
 - (void) gridViewDidEndScrolling;
