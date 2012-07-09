@@ -233,7 +233,14 @@
         
         UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTap:)];
         doubleTap.numberOfTapsRequired = 2;
+        doubleTap.delaysTouchesBegan = YES;
         [cell.contentView addGestureRecognizer:doubleTap];
+        
+        UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSingleTap:)];
+        singleTap.numberOfTapsRequired = 1;
+        singleTap.delaysTouchesBegan = YES;
+        [cell.contentView addGestureRecognizer:doubleTap];
+        [singleTap requireGestureRecognizerToFail:doubleTap];
     }
     
     //clear for updated list of views
@@ -327,6 +334,8 @@
         
         *view = tappedView;
         *viewIndex = ((cell.rowInfo.accumulatedViews) + index);
+    }else if (gesture.state == UIGestureRecognizerStatePossible){
+        //
     }
 }
 
@@ -340,7 +349,6 @@
             self.onLongPress(view, viewIndex);
         }
     }
-
 }
 
 - (void)didDoubleTap:(UITapGestureRecognizer*)doubleTap
@@ -357,9 +365,22 @@
 }
 
 
+- (void)didSingleTap:(UITapGestureRecognizer*)singleTap
+{
+    if (singleTap.state == UIGestureRecognizerStateRecognized) {
+        UIView *view = nil;
+        NSInteger viewIndex = -1;
+        [self gesture:singleTap view:&view viewIndex:&viewIndex];
+        if (self.onSingleTap) {
+            self.onSingleTap(view, viewIndex);
+        }
+    }
+    
+}
+
 @synthesize borderWidth;
 @synthesize delegate;
 @synthesize onLongPress;
 @synthesize onDoubleTap;
-
+@synthesize onSingleTap;
 @end
