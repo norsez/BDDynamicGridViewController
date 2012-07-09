@@ -106,7 +106,7 @@
     
     CGFloat widthScaling =  ((self.contentView.frame.size.width - ((self.contentView.subviews.count+1) * self.viewBorderWidth ))/totalWidth);
     CGFloat accumWidth = self.viewBorderWidth;
-    UIView* lastView;
+    //UIView* lastView;
     NSArray *newFrames = [NSArray array];
     for (int i=0; i<self.contentView.subviews.count; i++){
         UIView* subview = [self.contentView.subviews objectAtIndex:i];
@@ -115,7 +115,7 @@
         CGFloat leftMargin = i==0?0:(self.viewBorderWidth);
         newFrame = CGRectOffset(newFrame, accumWidth + leftMargin, 0);
         accumWidth = accumWidth + newFrame.size.width + leftMargin;
-        lastView = subview;
+        //lastView = subview;
         newFrames = [newFrames arrayByAddingObject:[NSValue valueWithCGRect:newFrame]];
     }
     
