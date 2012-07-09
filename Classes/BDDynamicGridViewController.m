@@ -239,7 +239,7 @@
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSingleTap:)];
         singleTap.numberOfTapsRequired = 1;
         singleTap.delaysTouchesBegan = YES;
-        [cell.contentView addGestureRecognizer:doubleTap];
+        [cell.contentView addGestureRecognizer:singleTap];
         [singleTap requireGestureRecognizerToFail:doubleTap];
     }
     
