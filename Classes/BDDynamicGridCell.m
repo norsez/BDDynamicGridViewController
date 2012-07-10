@@ -36,8 +36,10 @@
 
 
 #import "BDDynamicGridCell.h"
-
-
+@interface BDDynamicGridCell(){
+    UIView * _gridContainerView;
+}
+@end
 
 @implementation BDDynamicGridCell
 
@@ -45,7 +47,6 @@
 {
     self = [self initWithStyle:0 reuseIdentifier:@"GridCell"];
     if (self) {
-        
     }
     return self;
 }
@@ -54,6 +55,10 @@
 {
     self = [super initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
     if (self) {
+        _gridContainerView = [[UIView alloc] initWithFrame:CGRectZero];
+        _gridContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight; 
+        [self.contentView addSubview:_gridContainerView];
+
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight; 
     }
@@ -81,10 +86,13 @@
 - (void)layoutSubviewsAnimated:(BOOL)animated
 {
     [super layoutSubviews];
+    _gridContainerView.frame = CGRectMake(0, 0, 
+                                          self.contentView.frame.size.width, 
+                                          self.contentView.frame.size.height);
     NSArray * oldFrames = [NSArray array];
     if (animated) {
-        for (int i=0; i<self.contentView.subviews.count; i++){
-            UIView* subview = [self.contentView.subviews objectAtIndex:i];
+        for (int i=0; i<_gridContainerView.subviews.count; i++){
+            UIView* subview = [_gridContainerView.subviews objectAtIndex:i];
             oldFrames = [oldFrames arrayByAddingObject:[NSValue valueWithCGRect:subview.frame]];
         }
     }
@@ -92,8 +100,8 @@
     //layout what's in the cell
     CGFloat aRowHeight = self.frame.size.height;
     CGFloat totalWidth = 0;
-    for (int i=0; i<self.contentView.subviews.count; i++){
-        UIView* subview = [self.contentView.subviews objectAtIndex:i];
+    for (int i=0; i<_gridContainerView.subviews.count; i++){
+        UIView* subview = [_gridContainerView.subviews objectAtIndex:i];
         //assume that for UIImageView, the size we want is the image size
         if ([subview isKindOfClass:[UIImageView class]]){
             UIImageView *iv = (UIImageView*)subview;
@@ -104,12 +112,12 @@
         totalWidth = totalWidth + subview.frame.size.width;
     }
     
-    CGFloat widthScaling =  ((self.contentView.frame.size.width - ((self.contentView.subviews.count+1) * self.viewBorderWidth ))/totalWidth);
+    CGFloat widthScaling =  ((_gridContainerView.frame.size.width - ((_gridContainerView.subviews.count+1) * self.viewBorderWidth ))/totalWidth);
     CGFloat accumWidth = self.viewBorderWidth;
     //UIView* lastView;
     NSArray *newFrames = [NSArray array];
-    for (int i=0; i<self.contentView.subviews.count; i++){
-        UIView* subview = [self.contentView.subviews objectAtIndex:i];
+    for (int i=0; i<_gridContainerView.subviews.count; i++){
+        UIView* subview = [_gridContainerView.subviews objectAtIndex:i];
         CGRect newFrame = subview.frame;
         newFrame = CGRectMake(0, 0, newFrame.size.width * widthScaling, aRowHeight - self.viewBorderWidth);
         CGFloat leftMargin = i==0?0:(self.viewBorderWidth);
@@ -120,21 +128,21 @@
     }
     
     if (!animated) {
-        for (int i=0; i<self.contentView.subviews.count; i++){
-            UIView* subview = [self.contentView.subviews objectAtIndex:i];
+        for (int i=0; i<_gridContainerView.subviews.count; i++){
+            UIView* subview = [_gridContainerView.subviews objectAtIndex:i];
             NSValue* newFrame = [newFrames objectAtIndex:i];
             subview.frame = [newFrame CGRectValue];
         }
     }else {
-        for (int i=0; i<self.contentView.subviews.count; i++){
-            UIView* subview = [self.contentView.subviews objectAtIndex:i];
+        for (int i=0; i<_gridContainerView.subviews.count; i++){
+            UIView* subview = [_gridContainerView.subviews objectAtIndex:i];
             NSValue* oldFrame = [oldFrames objectAtIndex:i];
             subview.frame = [oldFrame CGRectValue];
         }
         [UIView animateWithDuration:1.f
                          animations:^{
-                             for (int i=0; i<self.contentView.subviews.count; i++){
-                                 UIView* subview = [self.contentView.subviews objectAtIndex:i];
+                             for (int i=0; i<_gridContainerView.subviews.count; i++){
+                                 UIView* subview = [_gridContainerView.subviews objectAtIndex:i];
                                  NSValue* newFrame = [newFrames objectAtIndex:i];
                                  subview.frame = [newFrame CGRectValue];
                              } 
@@ -146,7 +154,7 @@
 {   
     //remove all subviews.
     if (views == nil || views.count == 0) {
-        for (UIView* sb in self.contentView.subviews) {
+        for (UIView* sb in _gridContainerView.subviews) {
             [sb removeFromSuperview];
         }
         return;
@@ -154,7 +162,7 @@
     
     for(UIView * sv in views){
         sv.contentMode = UIViewContentModeScaleAspectFill;
-        [self.contentView addSubview:sv];
+        [_gridContainerView addSubview:sv];
     }
 
     [self setNeedsLayout];
@@ -164,4 +172,5 @@
 @synthesize layoutStyle=_layoutStyle;
 @synthesize viewBorderWidth;
 @synthesize rowInfo;
+@synthesize gridContainerView=_gridContainerView;
 @end

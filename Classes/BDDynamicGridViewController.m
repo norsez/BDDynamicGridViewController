@@ -202,7 +202,7 @@
     
     BDDynamicGridCell *cell =  (BDDynamicGridCell*)[_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowInfo.order inSection:0]];
     NSUInteger realIndex = index - rowInfo.accumulatedViews;
-    view = [cell.contentView.subviews objectAtIndex:realIndex];
+    view = [cell.gridContainerView.subviews objectAtIndex:realIndex];
     
     return view;
 }
@@ -212,7 +212,7 @@
     NSArray* cells = [_tableView visibleCells];
     NSArray* visibleViews = [[NSArray alloc] init];
     for (BDDynamicGridCell *cell in cells) {
-        visibleViews = [visibleViews arrayByAddingObjectsFromArray:cell.contentView.subviews];
+        visibleViews = [visibleViews arrayByAddingObjectsFromArray:cell.gridContainerView.subviews];
     }
     return visibleViews;
 }
@@ -229,17 +229,17 @@
         
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPress:)];
         longPress.numberOfTouchesRequired = 1;
-        [cell.contentView addGestureRecognizer:longPress];
+        [cell.gridContainerView addGestureRecognizer:longPress];
         
         UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didDoubleTap:)];
         doubleTap.numberOfTapsRequired = 2;
         doubleTap.delaysTouchesBegan = YES;
-        [cell.contentView addGestureRecognizer:doubleTap];
+        [cell.gridContainerView addGestureRecognizer:doubleTap];
         
         UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(didSingleTap:)];
         singleTap.numberOfTapsRequired = 1;
         singleTap.delaysTouchesBegan = YES;
-        [cell.contentView addGestureRecognizer:singleTap];
+        [cell.gridContainerView addGestureRecognizer:singleTap];
         [singleTap requireGestureRecognizerToFail:doubleTap];
     }
     
@@ -297,57 +297,42 @@
 
 - (void)gesture:(UIGestureRecognizer*)gesture view:(UIView**)view viewIndex:(NSInteger*)viewIndex
 {
-    if (gesture.state == UIGestureRecognizerStateEnded) {
         
-        BDDynamicGridCell *cell = (BDDynamicGridCell*) [gesture.view superview];
-        
-        CGPoint tapPoint = [gesture locationInView:gesture.view];
-        NSArray *viewsSortedByXDesc = [gesture.view.subviews sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-            UIView * v1 = obj1;
-            UIView * v2 = obj2;
-            return v1.frame.origin.x - v2.frame.origin.x;
-        }];
-        
-        if (viewsSortedByXDesc.count == 1) {   
-            *view = [viewsSortedByXDesc objectAtIndex:0];
-            *viewIndex = (cell.rowInfo.accumulatedViews);
-            return;
+    BDDynamicGridCell *cell = (BDDynamicGridCell*) [gesture.view.superview superview];
+    
+    CGPoint locationInGridContainer = [gesture locationInView:gesture.view];
+    for (int i=0; i < cell.gridContainerView.subviews.count; i++){
+        UIView *subview = [cell.gridContainerView.subviews objectAtIndex:i];
+        if(CGRectContainsPoint(subview.frame, locationInGridContainer)){
+            *view = subview;
+            *viewIndex = ((cell.rowInfo.accumulatedViews) + i );
+            break;
         }
-        
-        UIView * tappedView = nil;
-        NSUInteger index = 0;
-        for (int i=1; i<viewsSortedByXDesc.count; i++) {
-            UIView * prevView = [viewsSortedByXDesc objectAtIndex:i-1];
-            UIView * curView = [viewsSortedByXDesc objectAtIndex:i];
-            if (prevView.frame.origin.x < tapPoint.x &&
-                tapPoint.x < curView.frame.origin.x) {
-                tappedView = curView;
-                index = i;
-            }
-        }
-        if (tappedView==nil) {
-            tappedView = [viewsSortedByXDesc objectAtIndex:0];
-            index = viewsSortedByXDesc.count ;
-        }
-        
-        index = index - 1;
-        
-        *view = tappedView;
-        *viewIndex = ((cell.rowInfo.accumulatedViews) + index);
-    }else if (gesture.state == UIGestureRecognizerStatePossible){
-        //
     }
 }
 
 - (void)didLongPress:(UILongPressGestureRecognizer*)longPress
 {
-    if (longPress.state == UIGestureRecognizerStateRecognized) {
-        UIView *view = nil;
-        NSInteger viewIndex = -1;
-        [self gesture:longPress view:&view viewIndex:&viewIndex];
+    
+    UIView *view = nil;
+    NSInteger viewIndex = -1;
+    [self gesture:longPress view:&view viewIndex:&viewIndex];
+    
+    
+    if (longPress.state == UIGestureRecognizerStateBegan) {
+        if ([self.delegate respondsToSelector:@selector(longPressDidBeginAtView:index:)]) {
+            [self.delegate longPressDidBeginAtView:view index:viewIndex];
+        }
+    }else if (longPress.state == UIGestureRecognizerStateRecognized) {
+        
+        if ([self.delegate respondsToSelector:@selector(longPressDidEndAtView:index:)]) {
+            [self.delegate longPressDidEndAtView:view index:viewIndex];
+        }
+        
         if (self.onLongPress) {
             self.onLongPress(view, viewIndex);
         }
+        
     }
 }
 
@@ -370,6 +355,7 @@
     if (singleTap.state == UIGestureRecognizerStateRecognized) {
         UIView *view = nil;
         NSInteger viewIndex = -1;
+        //DLog(@"view %@, viewIndex %d", view, viewIndex);
         [self gesture:singleTap view:&view viewIndex:&viewIndex];
         if (self.onSingleTap) {
             self.onSingleTap(view, viewIndex);

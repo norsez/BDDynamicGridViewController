@@ -58,6 +58,15 @@
  */
 - (NSUInteger)minimumViewsPerCell;
 
+/**
+ This method is called when long press is recognized.
+ */
+- (void)longPressDidBeginAtView:(UIView*)view index:(NSUInteger)index;
+/**
+ This method is called when long press ends and before the onLongPress block is executed.
+ */
+- (void)longPressDidEndAtView:(UIView*)view index:(NSUInteger)index;
+
 
 /**
  @name Scrolling events
@@ -82,5 +91,7 @@
  This method gets called when grid view's scrolling comes to a halt.
  */
 - (void) gridViewDidEndScrolling;
+
+
 
 @end

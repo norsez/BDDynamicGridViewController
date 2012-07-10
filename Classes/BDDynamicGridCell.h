@@ -86,5 +86,11 @@ typedef NSUInteger BDDynamicGridCellLayoutStyle;
  */
 @property (nonatomic, strong) BDRowInfo* rowInfo;
 
+/**
+ The view that grid views are contained in.
+ */
+@property (nonatomic, strong, readonly) UIView* gridContainerView;
+
+
 
 @end
