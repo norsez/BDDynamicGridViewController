@@ -75,6 +75,7 @@
     self.borderWidth = kDefaultBorderWidth;
     self.view.frame =  CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     [self.view addSubview:_tableView];
+    _tableView.frame = self.view.bounds;
     [self reloadData];
     
 }
