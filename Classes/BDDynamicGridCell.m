@@ -122,6 +122,7 @@
         newFrame = CGRectMake(0, 0, newFrame.size.width * widthScaling, aRowHeight - self.viewBorderWidth);
         CGFloat leftMargin = i==0?0:(self.viewBorderWidth);
         newFrame = CGRectOffset(newFrame, accumWidth + leftMargin, 0);
+        newFrame = CGRectIntegral(newFrame);
         accumWidth = accumWidth + newFrame.size.width + leftMargin;
         //lastView = subview;
         newFrames = [newFrames arrayByAddingObject:[NSValue valueWithCGRect:newFrame]];

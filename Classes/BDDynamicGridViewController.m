@@ -181,6 +181,15 @@
 {
     BDDynamicGridCell *cell = (BDDynamicGridCell*) [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowInfo.order inSection:0]];
     [cell layoutSubviewsAnimated:animated];
+//    if  (animated){
+//        for (int i=0; i < cell.gridContainerView.subviews.count; i++) {
+//            UIView * subview = [cell.gridContainerView.subviews objectAtIndex:i];
+//            if ([subview isKindOfClass:[UIImageView class]]) {
+//                UIImageView *iv = (UIImageView*) subview;
+//                NSLog(@"imageview %@ vs image size %@", NSStringFromCGRect(iv.frame), [NSString stringWithFormat:@"{%f,%f}", iv.image.size.width, iv.image.size.height]);
+//            }
+//        }
+//    }
 }
 
 - (UIView*)viewAtIndex:(NSUInteger)index
@@ -361,7 +370,6 @@
             self.onSingleTap(view, viewIndex);
         }
     }
-    
 }
 
 @synthesize borderWidth;
