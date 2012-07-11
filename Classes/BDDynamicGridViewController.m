@@ -133,7 +133,7 @@
 - (void)reloadRows:(NSArray *)rowInfos
 {
     NSArray *indexPaths = [NSArray array];
-    for (BDRowInfo *row in indexPaths) {
+    for (BDRowInfo *row in rowInfos) {
         indexPaths = [indexPaths arrayByAddingObject: [NSIndexPath indexPathForRow:row.order inSection:0]];
     }
     [_tableView reloadRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationNone];
