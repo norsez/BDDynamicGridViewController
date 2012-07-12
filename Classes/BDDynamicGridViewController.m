@@ -182,15 +182,6 @@
 {
     BDDynamicGridCell *cell = (BDDynamicGridCell*) [_tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:rowInfo.order inSection:0]];
     [cell layoutSubviewsAnimated:animated];
-//    if  (animated){
-//        for (int i=0; i < cell.gridContainerView.subviews.count; i++) {
-//            UIView * subview = [cell.gridContainerView.subviews objectAtIndex:i];
-//            if ([subview isKindOfClass:[UIImageView class]]) {
-//                UIImageView *iv = (UIImageView*) subview;
-//                NSLog(@"imageview %@ vs image size %@", NSStringFromCGRect(iv.frame), [NSString stringWithFormat:@"{%f,%f}", iv.image.size.width, iv.image.size.height]);
-//            }
-//        }
-//    }
 }
 
 - (UIView*)viewAtIndex:(NSUInteger)index
@@ -310,10 +301,15 @@
         
     BDDynamicGridCell *cell = (BDDynamicGridCell*) [gesture.view.superview superview];
     
-    CGPoint locationInGridContainer = [gesture locationInView:gesture.view];
+    CGPoint locationInGridContainer = [gesture locationInView:gesture.view];    
     for (int i=0; i < cell.gridContainerView.subviews.count; i++){
         UIView *subview = [cell.gridContainerView.subviews objectAtIndex:i];
-        if(CGRectContainsPoint(subview.frame, locationInGridContainer)){
+        CGRect vincinityRect = CGRectMake(subview.frame.origin.x - self.borderWidth, 
+                                         0, 
+                                         subview.frame.size.width + (self.borderWidth * 2), 
+                                         cell.gridContainerView.frame.size.height);
+        
+        if(CGRectContainsPoint(vincinityRect, locationInGridContainer)){
             *view = subview;
             *viewIndex = ((cell.rowInfo.accumulatedViews) + i );
             break;
