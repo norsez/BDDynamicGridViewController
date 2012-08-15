@@ -261,8 +261,21 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    BDRowInfo *rowInfo = [_rowInfos objectAtIndex:indexPath.row];
-    return [self.delegate rowHeightForRowInfo:rowInfo];
+    if ([self.delegate respondsToSelector:@selector(rowHeightForRowInfo:)]) {
+        BDRowInfo *rowInfo = [_rowInfos objectAtIndex:indexPath.row];
+        return [self.delegate rowHeightForRowInfo:rowInfo];
+    }else{
+        return tableView.rowHeight;
+    }
+    
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([self.delegate respondsToSelector:@selector(willDisplayRow:)]) {
+        BDRowInfo *rowInfo = [_rowInfos objectAtIndex:indexPath.row];
+        return [self.delegate willDisplayRow:rowInfo];
+    }
 }
 
 #pragma mark - scrolling

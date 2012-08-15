@@ -48,7 +48,6 @@
  */
 - (UIView*) viewAtIndex:(NSUInteger)index rowInfo:(BDRowInfo*)rowInfo;
 
-- (CGFloat) rowHeightForRowInfo:(BDRowInfo*)rowInfo;
 
 
 @optional
@@ -93,5 +92,17 @@
 - (void) gridViewDidEndScrolling;
 
 
+/**
+ This method is called to determine the height of the specified row.
+ @param rowInfo the row which the grid view needs to know its height.
+ @return height of row in CGFloat.
+ */
+- (CGFloat) rowHeightForRowInfo:(BDRowInfo*)rowInfo;
+
+/**
+ This method is calleed when the specified row is about to be displayed.
+ @param rowInfo the row about to be displayed.
+ */
+- (void)willDisplayRow:(BDRowInfo*)rowInfo;
 
 @end
