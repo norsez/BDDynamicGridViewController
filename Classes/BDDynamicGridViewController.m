@@ -173,7 +173,7 @@
         _rowInfos = [_rowInfos arrayByAddingObject:ri];
     }
     ri.isLastCell = YES;
-    NSAssert(accumNumOfViews == self.delegate.numberOfViews, @"wrong accum %@ ", ri.accumulatedViews);
+    NSAssert(accumNumOfViews == self.delegate.numberOfViews, @"wrong accum %u ", ri.accumulatedViews);
     [_tableView reloadData];
 }
 
