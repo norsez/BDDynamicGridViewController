@@ -221,8 +221,9 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    BDRowInfo *ri = [_rowInfos objectAtIndex:indexPath.row];
     static NSString *CellIdentifier = @"Cell";
-    BDDynamicGridCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    BDDynamicGridCell *cell = [tableView dequeueReusableCellWithIdentifier:[CellIdentifier stringByAppendingFormat:@"_viewCount%d", ri.viewsPerCell]];
     
     if (!cell) {
         cell = [[BDDynamicGridCell alloc] initWithLayoutStyle:BDDynamicGridCellLayoutStyleFill
@@ -247,7 +248,7 @@
     //clear for updated list of views
     [cell setViews:nil];
     cell.viewBorderWidth = self.borderWidth;
-    BDRowInfo *ri = [_rowInfos objectAtIndex:indexPath.row];
+
     cell.rowInfo = ri;
     NSArray * viewsForRow = [NSArray array];
     for (int i=0; i<ri.viewsPerCell; i++) {
