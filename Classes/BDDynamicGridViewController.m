@@ -145,35 +145,39 @@
         return;
     }
     
-    //rearrange views on the table by recalculating row infos
-    _rowInfos = [NSArray new];
-    NSUInteger accumNumOfViews = 0;
-    BDRowInfo * ri;
-    NSUInteger kMaxViewsPerCell = self.delegate.maximumViewsPerCell;
-    NSAssert(kMaxViewsPerCell>0, @"Maximum number of views per cell must be greater than zero");
-    NSUInteger kMinViewsPerCell = 1;
-    
-    if ([self.delegate respondsToSelector:@selector(minimumViewsPerCell)]) {
-        kMinViewsPerCell = self.delegate.minimumViewsPerCell==0?1:self.delegate.minimumViewsPerCell;
-    }
-    
-    NSAssert(kMinViewsPerCell <= kMaxViewsPerCell, @"Minimum number of views per row cannot be greater than maximum number of views per row.");
-    
-    while (accumNumOfViews < self.delegate.numberOfViews) {
-        NSUInteger numOfViews = (arc4random() % kMaxViewsPerCell) + kMinViewsPerCell;   
-        if (numOfViews > kMaxViewsPerCell) {
-            numOfViews = kMaxViewsPerCell;
+    if (![self.delegate respondsToSelector:@selector(customLayout)]) {
+        //rearrange views on the table by recalculating row infos
+        _rowInfos = [NSArray new];
+        NSUInteger accumNumOfViews = 0;
+        BDRowInfo * ri;
+        NSUInteger kMaxViewsPerCell = self.delegate.maximumViewsPerCell;
+        NSAssert(kMaxViewsPerCell>0, @"Maximum number of views per cell must be greater than zero");
+        NSUInteger kMinViewsPerCell = 1;
+        
+        if ([self.delegate respondsToSelector:@selector(minimumViewsPerCell)]) {
+            kMinViewsPerCell = self.delegate.minimumViewsPerCell==0?1:self.delegate.minimumViewsPerCell;
         }
-        numOfViews = (accumNumOfViews+numOfViews <= self.delegate.numberOfViews)?numOfViews:(self.delegate.numberOfViews-accumNumOfViews);
-        ri = [BDRowInfo new];
-        ri.order = _rowInfos.count;
-        ri.accumulatedViews = accumNumOfViews;
-        ri.viewsPerCell = numOfViews;
-        accumNumOfViews = accumNumOfViews + numOfViews;
-        _rowInfos = [_rowInfos arrayByAddingObject:ri];
+        
+        NSAssert(kMinViewsPerCell <= kMaxViewsPerCell, @"Minimum number of views per row cannot be greater than maximum number of views per row.");
+        
+        while (accumNumOfViews < self.delegate.numberOfViews) {
+            NSUInteger numOfViews = (arc4random() % kMaxViewsPerCell) + kMinViewsPerCell;
+            if (numOfViews > kMaxViewsPerCell) {
+                numOfViews = kMaxViewsPerCell;
+            }
+            numOfViews = (accumNumOfViews+numOfViews <= self.delegate.numberOfViews)?numOfViews:(self.delegate.numberOfViews-accumNumOfViews);
+            ri = [BDRowInfo new];
+            ri.order = _rowInfos.count;
+            ri.accumulatedViews = accumNumOfViews;
+            ri.viewsPerCell = numOfViews;
+            accumNumOfViews = accumNumOfViews + numOfViews;
+            _rowInfos = [_rowInfos arrayByAddingObject:ri];
+        }
+        ri.isLastCell = YES;
+        NSAssert(accumNumOfViews == self.delegate.numberOfViews, @"wrong accum %u ", ri.accumulatedViews);
+    }else{
+        _rowInfos = [self.delegate customLayout];
     }
-    ri.isLastCell = YES;
-    NSAssert(accumNumOfViews == self.delegate.numberOfViews, @"wrong accum %u ", ri.accumulatedViews);
     [_tableView reloadData];
 }
 
