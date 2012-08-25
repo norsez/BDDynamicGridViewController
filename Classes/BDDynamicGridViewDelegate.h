@@ -36,7 +36,14 @@
 @class BDRowInfo;
 @protocol BDDynamicGridViewDelegate <NSObject>
 
+/**
+ @return the maximum number of views for each row.
+ */
 - (NSUInteger)maximumViewsPerCell;
+
+/**
+ @return The number of views in total.
+ */
 - (NSUInteger)numberOfViews;
 
 
@@ -51,6 +58,19 @@
 
 
 @optional
+
+/**
+ Instead of letting BDDynamicGridViewController decide layout, you
+ can supply the class with your own layout by implementing this method.
+ 
+ If this method is implemented, -maximumViewsPerCell and -numberOfViews have
+ no effect.
+ 
+ @return an array of BDRowInfo describing your own layout.
+ */
+- (NSArray*) customLayout;
+
+
 /**
  Minimum number of views per row.
  1 is default if not implemented or when returning zero.
