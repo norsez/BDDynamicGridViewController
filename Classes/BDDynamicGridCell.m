@@ -149,6 +149,11 @@
                              } 
                          }];
     }
+    
+    //layout each grid's subviews
+    for (UIView *sv  in _gridContainerView.subviews) {
+        [sv setNeedsLayout];
+    }
 }
 
 -(void)setViews:(NSArray *)views
