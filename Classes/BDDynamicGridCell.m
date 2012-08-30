@@ -133,6 +133,7 @@
             UIView* subview = [_gridContainerView.subviews objectAtIndex:i];
             NSValue* newFrame = [newFrames objectAtIndex:i];
             subview.frame = [newFrame CGRectValue];
+            [subview setNeedsLayout];
         }
     }else {
         for (int i=0; i<_gridContainerView.subviews.count; i++){
@@ -146,15 +147,11 @@
                                  UIView* subview = [_gridContainerView.subviews objectAtIndex:i];
                                  NSValue* newFrame = [newFrames objectAtIndex:i];
                                  subview.frame = [newFrame CGRectValue];
+                                 [subview setNeedsLayout];
                              } 
                          }];
     }
-    
-    //layout each grid's subviews
-    for (UIView *sv  in _gridContainerView.subviews) {
-        [sv setNeedsLayout];
     }
-}
 
 -(void)setViews:(NSArray *)views
 {   
