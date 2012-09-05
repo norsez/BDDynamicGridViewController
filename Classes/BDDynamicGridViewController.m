@@ -188,11 +188,22 @@
     [cell layoutSubviewsAnimated:animated];
 }
 
+- (void)scrollToRow:(BDRowInfo *)row atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated
+{
+    [_tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:row.order
+                                                         inSection:0]
+                      atScrollPosition:scrollPosition animated:animated];
+}
+
 - (UIView*)viewAtIndex:(NSUInteger)index
 {
     UIView *view = nil;
     BDRowInfo *findRow = [[BDRowInfo alloc] init];
     findRow.accumulatedViews = index ;
+    
+    if (_rowInfos.count == 0) {
+        return nil;
+    }
     
     //use binary search for the cell that contains the specified index
     NSUInteger indexOfRow = [_rowInfos indexOfObject:findRow
@@ -310,6 +321,16 @@
             [self.delegate gridViewWillStartScrolling];
         }
     }
+}
+
+- (void)setContentInset:(UIEdgeInsets)contentInset
+{
+    _tableView.contentInset = contentInset;
+}
+
+-(UIEdgeInsets)contentInset
+{
+    return _tableView.contentInset;
 }
 
 #pragma mark - events
