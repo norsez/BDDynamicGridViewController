@@ -89,6 +89,14 @@
 - (void)updateLayoutWithRow:(BDRowInfo*)rowInfo animiated:(BOOL)animated;
 
 /**
+ Programmatically scroll to the specified row.
+ @param row the row to scroll to.
+ @param scrollPosition postion of the specified row when scrolling stops.
+ @param animated animating flag of scrolling
+ */
+- (void)scrollToRow:(BDRowInfo*)row atScrollPosition:(UITableViewScrollPosition)scrollPosition animated:(BOOL)animated;
+
+/**
  @param color color for the background.
  */
 - (void)setBackgroundColor:(UIColor*)color;
@@ -96,6 +104,8 @@
 /**
  @name Properties
  */
+@property (nonatomic, assign) UIEdgeInsets contentInset;
+
 
 /**
  The delegate of this class. Can be nil, but nothing will display.
