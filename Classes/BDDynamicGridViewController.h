@@ -76,6 +76,12 @@
 - (void)reloadData;
 
 /**
+ Relayout with a grid pattern. 
+ @param gridPattern array of NSNumber specifying each row's number of views.
+ */
+- (void)reloadDataWithGridPattern:(NSArray*)gridPattern;
+
+/**
  Reload the views in rows specified by the input BDRowInfo objects.
  @param rowInfos list of BDRowInfo to be reloaded.
  */
