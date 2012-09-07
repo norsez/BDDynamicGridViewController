@@ -181,6 +181,36 @@
     [_tableView reloadData];
 }
 
+- (void)reloadDataWithGridPattern:(NSArray *)gridPattern
+{
+    if  (gridPattern.count == 0){
+        [self reloadData];
+        return;
+    }else {
+        //rearrange views on the table by recalculating row infos
+        _rowInfos = [NSArray new];
+        NSUInteger accumNumOfViews = 0;
+        BDRowInfo * ri;
+        
+        int patternIndex = 0;
+        while (accumNumOfViews < self.delegate.numberOfViews) {
+            NSNumber* number  = [gridPattern objectAtIndex:patternIndex%gridPattern.count];
+            NSAssert(number.integerValue != 0, @"Grid pattern can't contains a zero size row.");
+            NSUInteger numOfViews = number.integerValue;
+            numOfViews = (accumNumOfViews+numOfViews <= self.delegate.numberOfViews)?numOfViews:(self.delegate.numberOfViews-accumNumOfViews);
+            ri = [BDRowInfo new];
+            ri.order = _rowInfos.count;
+            ri.accumulatedViews = accumNumOfViews;
+            ri.viewsPerCell = numOfViews;
+            accumNumOfViews = accumNumOfViews + numOfViews;
+            _rowInfos = [_rowInfos arrayByAddingObject:ri];
+        }
+        ri.isLastCell = YES;
+        NSAssert(accumNumOfViews == self.delegate.numberOfViews, @"wrong accum %u ", ri.accumulatedViews);
+        [_tableView reloadData];
+    }
+}
+
 
 - (void)updateLayoutWithRow:(BDRowInfo *)rowInfo animiated:(BOOL)animated
 {
