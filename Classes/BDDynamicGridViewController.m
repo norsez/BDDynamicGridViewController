@@ -194,7 +194,7 @@
         
         int patternIndex = 0;
         while (accumNumOfViews < self.delegate.numberOfViews) {
-            NSNumber* number  = [gridPattern objectAtIndex:patternIndex%gridPattern.count];
+            NSNumber* number  = [gridPattern objectAtIndex:(patternIndex++)%gridPattern.count];
             NSAssert(number.integerValue != 0, @"Grid pattern can't contains a zero size row.");
             NSUInteger numOfViews = number.integerValue;
             numOfViews = (accumNumOfViews+numOfViews <= self.delegate.numberOfViews)?numOfViews:(self.delegate.numberOfViews-accumNumOfViews);
