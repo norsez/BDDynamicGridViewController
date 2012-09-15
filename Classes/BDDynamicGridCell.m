@@ -133,7 +133,7 @@
             UIView* subview = [_gridContainerView.subviews objectAtIndex:i];
             NSValue* newFrame = [newFrames objectAtIndex:i];
             subview.frame = [newFrame CGRectValue];
-            [subview setNeedsLayout];
+            //[subview setNeedsLayout];
         }
     }else {
         for (int i=0; i<_gridContainerView.subviews.count; i++){
@@ -147,7 +147,7 @@
                                  UIView* subview = [_gridContainerView.subviews objectAtIndex:i];
                                  NSValue* newFrame = [newFrames objectAtIndex:i];
                                  subview.frame = [newFrame CGRectValue];
-                                 [subview setNeedsLayout];
+                                 //[subview setNeedsLayout];
                              } 
                          }];
     }
@@ -168,7 +168,7 @@
         [_gridContainerView addSubview:sv];
     }
 
-    [self setNeedsLayout];
+    //[self setNeedsLayout];
 }
 
 
