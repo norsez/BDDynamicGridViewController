@@ -124,6 +124,10 @@
 @property (nonatomic, assign) CGFloat borderWidth;
 
 
+/**
+ The table view which is used for implementing this class.
+ */
+- (UITableView*)tableView;
 
 /**
  @name Method delegator blocks

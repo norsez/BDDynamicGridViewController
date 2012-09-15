@@ -324,6 +324,11 @@
     }
 }
 
+- (UITableView *)tableView
+{
+    return _tableView;
+}
+
 #pragma mark - scrolling
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
