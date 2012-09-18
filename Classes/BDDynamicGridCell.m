@@ -38,6 +38,7 @@
 #import "BDDynamicGridCell.h"
 @interface BDDynamicGridCell(){
     UIView * _gridContainerView;
+    BOOL _doneInitialLayout;
 }
 @end
 
@@ -86,6 +87,11 @@
 - (void)layoutSubviewsAnimated:(BOOL)animated
 {
     [super layoutSubviews];
+    
+    if (_doneInitialLayout && animated == NO) {
+        return;
+    }
+    
     _gridContainerView.frame = CGRectMake(0, 0, 
                                           self.contentView.frame.size.width, 
                                           self.contentView.frame.size.height);
@@ -135,6 +141,7 @@
             subview.frame = [newFrame CGRectValue];
             //[subview setNeedsLayout];
         }
+        _doneInitialLayout = YES;
     }else {
         for (int i=0; i<_gridContainerView.subviews.count; i++){
             UIView* subview = [_gridContainerView.subviews objectAtIndex:i];
@@ -148,10 +155,10 @@
                                  NSValue* newFrame = [newFrames objectAtIndex:i];
                                  subview.frame = [newFrame CGRectValue];
                                  //[subview setNeedsLayout];
-                             } 
+                             }
                          }];
     }
-    }
+}
 
 -(void)setViews:(NSArray *)views
 {   
