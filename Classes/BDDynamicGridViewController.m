@@ -274,6 +274,8 @@
         cell = [[BDDynamicGridCell alloc] initWithLayoutStyle:BDDynamicGridCellLayoutStyleFill
                                               reuseIdentifier:CellIdentifier];
         
+        cell.viewBorderWidth = 1;
+        
         UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(didLongPress:)];
         longPress.numberOfTouchesRequired = 1;
         [cell.gridContainerView addGestureRecognizer:longPress];
