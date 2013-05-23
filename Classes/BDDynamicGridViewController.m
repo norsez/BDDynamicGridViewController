@@ -86,6 +86,12 @@
     _tableView = nil;
 }
 
+- (BOOL)shouldAutorotate
+{
+    [_tableView reloadData];
+    return YES;
+}
+
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation
 {
     [_tableView reloadData];
