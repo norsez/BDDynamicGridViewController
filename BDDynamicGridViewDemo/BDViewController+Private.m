@@ -13,7 +13,7 @@
 -(void)buildBarButtons
 {
     UIBarButtonItem * reloadButton = [[UIBarButtonItem alloc] initWithTitle:@"Lay it!"
-                                                                      style:UIBarButtonItemStylePlain 
+                                                                      style:UIBarButtonItemStylePlain
                                                                      target:self 
                                                                      action:@selector(animateReload)];
 

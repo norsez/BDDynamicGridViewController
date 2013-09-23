@@ -35,6 +35,7 @@ This is the delegate protocol needed by `BDDynamicGridViewController`. All metho
 That's it!
 
 ##Requirements
+- Tested on simulator for iOS 5.1, 6.1 and 7.0
 - Requires ARC
 
 

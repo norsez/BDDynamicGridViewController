@@ -18,7 +18,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.navigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    
+    if (floor(NSFoundationVersionNumber) <= NSFoundationVersionNumber_iOS_6_1) {
+        self.navigationController.navigationBar.tintColor = [UIColor whiteColor];
+    } else {
+        self.navigationController.navigationBar.barStyle = UIBarStyleDefault;
+    }
+    
+    
     self.delegate = self;
     
     self.onLongPress = ^(UIView* view, NSInteger viewIndex){

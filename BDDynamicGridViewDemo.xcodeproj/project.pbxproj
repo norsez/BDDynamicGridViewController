@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F34B5F2B17F048B400B97113 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F34B5F2A17F048B400B97113 /* Images.xcassets */; };
 		F3A7ED4B159546800094D086 /* BDDynamicGridCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A7ED4A159546800094D086 /* BDDynamicGridCell.m */; };
 		F3A7ED4F159555ED0094D086 /* BDRowInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = F3A7ED4E159555ED0094D086 /* BDRowInfo.m */; };
 		F3B7DF60159362AC00FF920B /* BDViewController+Private.m in Sources */ = {isa = PBXBuildFile; fileRef = F3B7DF5F159362AC00FF920B /* BDViewController+Private.m */; };
@@ -50,6 +51,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F34B5F2A17F048B400B97113 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		F3A7ED49159546800094D086 /* BDDynamicGridCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDDynamicGridCell.h; sourceTree = "<group>"; };
 		F3A7ED4A159546800094D086 /* BDDynamicGridCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDDynamicGridCell.m; sourceTree = "<group>"; };
 		F3A7ED4D159555ED0094D086 /* BDRowInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDRowInfo.h; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				FF5D5FFA159310FE00984C2F /* BDViewController.m */,
 				F3B7DF5E159362AC00FF920B /* BDViewController+Private.h */,
 				F3B7DF5F159362AC00FF920B /* BDViewController+Private.m */,
+				F34B5F2A17F048B400B97113 /* Images.xcassets */,
 				FF5D5FEE159310FE00984C2F /* Supporting Files */,
 			);
 			path = BDDynamicGridViewDemo;
@@ -277,6 +280,7 @@
 				F3D84A811593E8B900633ECD /* 2.jpg in Resources */,
 				F3D84A821593E8B900633ECD /* 3.jpg in Resources */,
 				F3D84A831593E8B900633ECD /* 4.jpg in Resources */,
+				F34B5F2B17F048B400B97113 /* Images.xcassets in Resources */,
 				F3D84A841593E8B900633ECD /* 5.jpg in Resources */,
 				F3D84A851593E8B900633ECD /* 6.jpg in Resources */,
 				F3D84A861593E8B900633ECD /* 7.jpg in Resources */,
@@ -384,6 +388,8 @@
 		FF5D6002159310FE00984C2F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BDDynamicGridViewDemo/BDDynamicGridViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "BDDynamicGridViewDemo/BDDynamicGridViewDemo-Info.plist";
@@ -395,6 +401,8 @@
 		FF5D6003159310FE00984C2F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BDDynamicGridViewDemo/BDDynamicGridViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "BDDynamicGridViewDemo/BDDynamicGridViewDemo-Info.plist";
