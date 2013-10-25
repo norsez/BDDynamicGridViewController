@@ -379,8 +379,9 @@
 
 - (void)gesture:(UIGestureRecognizer*)gesture view:(UIView**)view viewIndex:(NSInteger*)viewIndex
 {
-        
-    BDDynamicGridCell *cell = (BDDynamicGridCell*) [gesture.view.superview superview];
+    UIView *v = gesture.view;
+    while (v && ![v isKindOfClass:[BDDynamicGridCell class]]) v = v.superview;
+    BDDynamicGridCell *cell = (BDDynamicGridCell *) v;
     
     CGPoint locationInGridContainer = [gesture locationInView:gesture.view];    
     for (int i=0; i < cell.gridContainerView.subviews.count; i++){
