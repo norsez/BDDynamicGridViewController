@@ -73,7 +73,7 @@
     _tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin;
     self.borderWidth = kDefaultBorderWidth;
     self.view.frame =  CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    [self.view addSubview:_tableView];
+    [self.view insertSubview:_tableView atIndex:0];
     _tableView.frame = self.view.bounds;
     [self reloadData];
     
