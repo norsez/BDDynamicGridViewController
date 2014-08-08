@@ -309,6 +309,7 @@
     //clear for updated list of views
     [cell setViews:nil];
     cell.viewBorderWidth = self.borderWidth;
+    cell.backgroundColor = nil;
 
     cell.rowInfo = ri;
     NSArray * viewsForRow = [NSArray array];
