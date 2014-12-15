@@ -10,29 +10,29 @@
 	<string>BDDynamicGridViewDemo</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>CE355C7A-4AE4-48DA-A606-3F81BB387467</key>
+		<key>131B89C7C6CBC5187B1EBF3F6D9A07D0A91EECF8</key>
 		<string>https://github.com/norsez/BDDynamicGridViewController.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>BDDynamicGridViewDemo.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>CE355C7A-4AE4-48DA-A606-3F81BB387467</key>
+		<key>131B89C7C6CBC5187B1EBF3F6D9A07D0A91EECF8</key>
 		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/norsez/BDDynamicGridViewController.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>CE355C7A-4AE4-48DA-A606-3F81BB387467</string>
+	<string>131B89C7C6CBC5187B1EBF3F6D9A07D0A91EECF8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>CE355C7A-4AE4-48DA-A606-3F81BB387467</string>
+			<string>131B89C7C6CBC5187B1EBF3F6D9A07D0A91EECF8</string>
 			<key>IDESourceControlWCCName</key>
 			<string>BDDynamicGridViewController</string>
 		</dict>
