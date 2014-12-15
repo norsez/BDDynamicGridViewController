@@ -76,6 +76,10 @@
     [self.view insertSubview:_tableView atIndex:0];
     _tableView.frame = self.view.bounds;
     [self reloadData];
+  
+  self.onSingleTap = ^(UIView* view, NSInteger index) {
+    NSLog(@"tap on %d", index);
+  };
     
 }
 
@@ -443,7 +447,7 @@
     if (singleTap.state == UIGestureRecognizerStateRecognized) {
         UIView *view = nil;
         NSInteger viewIndex = -1;
-        //DLog(@"view %@, viewIndex %d", view, viewIndex);
+        //NSLog(@"view %@, viewIndex %d", view, viewIndex);
         [self gesture:singleTap view:&view viewIndex:&viewIndex];
         if (self.onSingleTap) {
             self.onSingleTap(view, viewIndex);
