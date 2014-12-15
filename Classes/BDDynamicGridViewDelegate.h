@@ -111,6 +111,11 @@
  */
 - (void) gridViewDidEndScrolling;
 
+/**
+ This method is called to determine the number of views in a cell.
+ @param rowInfo the row being calculated.
+ */
+- (NSUInteger)numberOfViewsPerCell:(BDRowInfo*)rowInfo;
 
 /**
  This method is called to determine the height of the specified row.
