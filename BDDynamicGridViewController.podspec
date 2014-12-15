@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'BDDynamicGridViewController'
-  s.version  = '0.0.4'
+  s.version  = '0.0.5'
   s.license  = 'BSD'
   s.summary  = 'Beautiful auto-layout scrollable grid view. Optimized for iOS 5.1, 6.0, 7.0'
   s.homepage = 'https://github.com/norsez/BDDynamicGridViewController'
